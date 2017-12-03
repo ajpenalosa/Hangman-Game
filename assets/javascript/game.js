@@ -4,8 +4,12 @@ var pixarCharacters = ["Flik","Princess Atta","Hopper","Merida","King Fergus","Q
 // Chooses a random Pixar character name from the array
 var randomCharacter = pixarCharacters[Math.floor(Math.random() * pixarCharacters.length)];
 
+// Changes letters to uppercase
+var upperCaseWord = randomCharacter.toUpperCase();
+
 // Logs the chosen Pixar character name to the console
 console.log(randomCharacter);
+console.log(upperCaseWord);
 
 // Creating variables to hold number of wins, losses, and guesses remaining
 var wins = 0;
@@ -16,26 +20,26 @@ var guessesRemaining = 10;
 var currentWord = [];
 
 // Puts underscores as placeholders for each letter of the current word
-for (var i = 0; i < randomCharacter.length; i++) {
+for (var i = 0; i < upperCaseWord.length; i++) {
 
     currentWord[i] = "_";
     var s = currentWord.join(" ");
     document.getElementById("current-word").innerHTML = s;
 
     // Logs individual letters of the current word to the console
-    console.log("The character at index " + [i] + " is: " + randomCharacter[i]);
+    console.log("The character at index " + [i] + " is: " + upperCaseWord[i]);
 };
 
 // Gives JavaScript a function to execute when onkeyup event fires
 document.onkeyup = function(event) {
 
     // Determines which key was pressed
-    var userGuess = event.key;
+    var userGuess = event.key.toUpperCase();
 
     // Assigns correctly guessed letters to the appropriate place in the current word
-    for (var j = 0; j < randomCharacter.length; j++) {
+    for (var j = 0; j < upperCaseWord.length; j++) {
 
-        if (randomCharacter[j] === userGuess) {
+        if (upperCaseWord[j] === userGuess) {
             currentWord[j] = userGuess;
         };
     };
