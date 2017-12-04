@@ -6,11 +6,6 @@ var wins = 0;
 var losses = 0;
 var guessesRemaining = 10;
 var gameStarted = false;
-// var lettersMatched = 0; // MIGHT NOT NEED THIS
-
-// MESSAGES
-
-
 
 //------------------------------------------------------------
 // ---------- ARRAYS
@@ -53,6 +48,9 @@ for (var i = 65; i <= 90; i++) {
 function newGame() {
 
     gameStarted = true;
+    currentWord = [];
+    correctGuesses = [];
+    wrongGuesses = [];
     
     // Chooses a random Pixar character name from the array
     var randomCharacter = pixarCharacters[Math.floor(Math.random() * pixarCharacters.length)];
@@ -80,20 +78,30 @@ function newGame() {
         
         // Determines which key was pressed
         var userGuess = event.key.toUpperCase();
+
+        var correct = false;
     
-        // Assigns correctly guessed letters to the appropriate place in the current word
+        // Checks for a match and assigns correctly guessed letters to the appropriate place in the current word
         for (var j = 0; j < upperCaseWord.length; j++) {
     
             if (upperCaseWord[j] === userGuess) {
                 currentWord[j] = userGuess;
+
+                correct = true;
                 
                 // adds letter to correctGuesses array
                 correctGuesses.push(userGuess);
             }
+            
+            // Adds +1 to wins if correctGuesses equals currentWord
+            if (correctGuesses.length === currentWord.length) {
+                wins++;
+                newGame();
+            }
         }
 
-        if (correctGuesses.length === currentWord.length) {
-            wins++;
+        if (!correct) {
+            guessesRemaining--;
         }
 
         console.log(correctGuesses);
@@ -108,3 +116,5 @@ function newGame() {
     console.log(upperCaseWord);
 
 };
+
+newGame();
