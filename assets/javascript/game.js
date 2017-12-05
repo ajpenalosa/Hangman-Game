@@ -48,6 +48,7 @@ for (var i = 65; i <= 90; i++) {
 function newGame() {
 
     gameStarted = true;
+    guessesRemaining = 10;
     currentWord = [];
     correctGuesses = [];
     wrongGuesses = [];
@@ -104,9 +105,15 @@ function newGame() {
             guessesRemaining--;
         }
 
+        if (guessesRemaining === 0) {
+            losses++;
+            newGame();
+        }
+
         console.log(correctGuesses);
         document.getElementById("user-guesses").innerHTML = event.key;
         document.getElementById("wins").innerHTML = wins;
+        document.getElementById("losses").innerHTML = losses;
         document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
         document.getElementById("current-word").innerHTML = currentWord.join("");
     };
