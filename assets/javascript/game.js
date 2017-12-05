@@ -81,37 +81,50 @@ function newGame() {
         var userGuess = event.key.toUpperCase();
 
         var correct = false;
-    
-        // Checks for a match and assigns correctly guessed letters to the appropriate place in the current word
-        for (var j = 0; j < upperCaseWord.length; j++) {
-    
-            if (upperCaseWord[j] === userGuess) {
-                currentWord[j] = userGuess;
+        var isLetter = false;
 
-                correct = true;
-                
-                // adds letter to correctGuesses array
-                correctGuesses.push(userGuess);
-            }
+        // Determines if key that is pressed is a letter
+        for (var k = 0; k < alphabet.length; k++) {
+            if (alphabet[k] === userGuess) {
+
+    
+                // Checks for a match and assigns correctly guessed letters to the appropriate place in the current word
+                for (var j = 0; j < upperCaseWord.length; j++) {
             
-            // Adds +1 to wins if correctGuesses equals currentWord
-            if (correctGuesses.length === currentWord.length) {
-                wins++;
-                newGame();
+                    if (upperCaseWord[j] === userGuess) {
+                        currentWord[j] = userGuess;
+        
+                        correct = true;
+                        
+                        // adds letter to correctGuesses array
+                        correctGuesses.push(userGuess);
+                    }
+                    
+                    // Adds +1 to wins if correctGuesses equals currentWord
+                    if (correctGuesses.length === currentWord.length) {
+                        wins++;
+                        newGame();
+                    }
+                }
+                
+                // Subtracts 1 from guesses remaning if userGuess is wrong
+                if (!correct) {
+                    guessesRemaining--;
+                    wrongGuesses.push(userGuess);
+                }
+        
+                // Add 1 to losses and start new game when guesses remaining reaches 0
+                if (guessesRemaining === 0) {
+                    losses++;
+                    newGame();
+                }
+
             }
         }
 
-        if (!correct) {
-            guessesRemaining--;
-        }
+        console.log(wrongGuesses);
 
-        if (guessesRemaining === 0) {
-            losses++;
-            newGame();
-        }
-
-        console.log(correctGuesses);
-        document.getElementById("user-guesses").innerHTML = event.key;
+        document.getElementById("user-guesses").innerHTML = wrongGuesses.join(" ");
         document.getElementById("wins").innerHTML = wins;
         document.getElementById("losses").innerHTML = losses;
         document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
