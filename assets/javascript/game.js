@@ -20,7 +20,6 @@ var pixarCharacters = ["Flik","Princess Atta","Hopper","Merida","King Fergus","Q
 
 var alphabet = [];
 var currentWord = [];
-var correctGuesses = [];
 var wrongGuesses = [];
 
 //------------------------------------------------------------
@@ -50,7 +49,6 @@ function newGame() {
     gameStarted = true;
     guessesRemaining = 10;
     currentWord = [];
-    correctGuesses = [];
     wrongGuesses = [];
     
     // Chooses a random Pixar character name from the array
@@ -64,8 +62,6 @@ function newGame() {
     
         if (upperCaseWord[i] === " ") {
             currentWord[i] = " ";
-            // Push empty space to correctGuesses array
-            correctGuesses.push(" ");
         } else {
             currentWord[i] = "_";
         }
@@ -95,13 +91,13 @@ function newGame() {
                         currentWord[j] = userGuess;
         
                         correct = true;
-                        
-                        // adds letter to correctGuesses array
-                        correctGuesses.push(userGuess);
                     }
                     
-                    // Adds +1 to wins if correctGuesses equals currentWord
-                    if (correctGuesses.length === currentWord.length) {
+                    // Creates variable that concatenates correctly guessed letters
+                    var winningWord = currentWord.join("");
+                    
+                    // Adds +1 to wins once winningWord equals upperCaseWord
+                    if (winningWord === upperCaseWord) {
                         wins++;
                         newGame();
                     }
@@ -122,7 +118,8 @@ function newGame() {
             }
         }
 
-        console.log(wrongGuesses);
+        console.log(winningWord);
+        console.log(upperCaseWord);
 
         document.getElementById("user-guesses").innerHTML = wrongGuesses.join(" ");
         document.getElementById("wins").innerHTML = wins;
