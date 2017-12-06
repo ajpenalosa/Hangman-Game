@@ -11,7 +11,6 @@ var gameStarted = false;
 // ---------- MESSAGES
 //------------------------------------------------------------
 
-var getStarted = "Press any key to get started!"
 var messageWin = "You Win!"
 var messageLose = "You Lose!"
 
