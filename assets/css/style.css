@@ -1,4 +1,6 @@
-
+.responsive-img {
+    width: 100%;
+}
 
 #current-word {
     letter-spacing: 10px;
