@@ -8,6 +8,14 @@ var guessesRemaining = 10;
 var gameStarted = false;
 
 //------------------------------------------------------------
+// ---------- MESSAGES
+//------------------------------------------------------------
+
+var getStarted = "Press any key to get started!"
+var messageWin = "You Win!"
+var messageLose = "You Lose!"
+
+//------------------------------------------------------------
 // ---------- ARRAYS
 //------------------------------------------------------------
 
@@ -90,9 +98,8 @@ document.onkeyup = function(event) {
     var isLetter = false;
 
     // Determines if key that is pressed is a letter
-    for (var k = 0; k < alphabet.length; k++) {
-        if (alphabet[k] === userGuess) {
-
+    for (var i = 0; i < alphabet.length; i++) {
+        if (alphabet[i] === userGuess) {
 
             // Checks for a match and assigns correctly guessed letters to the appropriate place in the current word
             for (var j = 0; j < upperCaseWord.length; j++) {
@@ -101,32 +108,30 @@ document.onkeyup = function(event) {
                     currentWord[j] = userGuess;
                     correct = true;
                 }
-                
-                // Creates variable that concatenates correctly guessed letters
-                var winningWord = currentWord.join("");
             }
         }
     }
-
-    console.log(winningWord);
-    console.log(upperCaseWord);
+    
+    // Subtracts 1 from guesses remaning if userGuess is wrong
+    // Adds letter to Letters Already Guessed if hasn't been guessed
+    if(!wrongGuesses.includes(userGuess) && !correct) {
+        guessesRemaining--;
+        wrongGuesses.push(userGuess);
+    }
 
     document.getElementById("user-guesses").innerHTML = wrongGuesses.join(" ");
     document.getElementById("wins").innerHTML = wins;
     document.getElementById("losses").innerHTML = losses;
     document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
     document.getElementById("current-word").innerHTML = currentWord.join("");
+
+    // Creates variable that concatenates correctly guessed letters
+    var winningWord = currentWord.join("");
     
     // Adds +1 to wins once winningWord equals upperCaseWord
     if (winningWord === upperCaseWord) {
         wins++;
         newGame();
-    }
-    
-    // Subtracts 1 from guesses remaning if userGuess is wrong
-    if (!correct) {
-        guessesRemaining--;
-        wrongGuesses.push(userGuess);
     }
 
     // Add 1 to losses and start new game when guesses remaining reaches 0
@@ -134,4 +139,7 @@ document.onkeyup = function(event) {
         losses++;
         newGame();
     }
+    
+    console.log(winningWord);
+    console.log(upperCaseWord);
 };
