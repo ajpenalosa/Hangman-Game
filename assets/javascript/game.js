@@ -93,36 +93,24 @@ document.onkeyup = function(event) {
     // Determines which key was pressed
     var userGuess = event.key.toUpperCase();
 
-    var correct = false;
-    var isLetter = false;
-
-    // Determines if key that is pressed is a letter
-    for (var i = 0; i < alphabet.length; i++) {
-        if (alphabet[i] === userGuess) {
-
-            // Checks for a match and assigns correctly guessed letters to the appropriate place in the current word
-            for (var j = 0; j < upperCaseWord.length; j++) {
+    // Determines if key that is pressed is part of the alphabet
+    if(alphabet.includes(userGuess)) {
         
-                if (upperCaseWord[j] === userGuess) {
-                    currentWord[j] = userGuess;
-                    correct = true;
-                }
+        // Checks for a match and assigns correctly guessed letters to the appropriate place in the current word
+        for (var j = 0; j < upperCaseWord.length; j++) {
+    
+            if (upperCaseWord[j] === userGuess) {
+                currentWord[j] = userGuess;
             }
         }
     }
     
     // Subtracts 1 from guesses remaning if userGuess is wrong
     // Adds letter to Letters Already Guessed if hasn't been guessed
-    if(!wrongGuesses.includes(userGuess) && !correct) {
+    if(!wrongGuesses.includes(userGuess) && alphabet.includes(userGuess)) {
         guessesRemaining--;
         wrongGuesses.push(userGuess);
     }
-
-    document.getElementById("user-guesses").innerHTML = wrongGuesses.join(" ");
-    document.getElementById("wins").innerHTML = wins;
-    document.getElementById("losses").innerHTML = losses;
-    document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
-    document.getElementById("current-word").innerHTML = currentWord.join("");
 
     // Creates variable that concatenates correctly guessed letters
     var winningWord = currentWord.join("");
@@ -138,6 +126,12 @@ document.onkeyup = function(event) {
         losses++;
         newGame();
     }
+
+    document.getElementById("user-guesses").innerHTML = wrongGuesses.join(" ");
+    document.getElementById("wins").innerHTML = wins;
+    document.getElementById("losses").innerHTML = losses;
+    document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
+    document.getElementById("current-word").innerHTML = currentWord.join("");
     
     console.log(winningWord);
     console.log(upperCaseWord);
