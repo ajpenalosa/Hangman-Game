@@ -21,6 +21,8 @@ var pixarCharacters = ["Flik","Princess Atta","Hopper","Merida","King Fergus","Q
 var alphabet = [];
 var currentWord = [];
 var wrongGuesses = [];
+var randomCharacter = [];
+var upperCaseWord = [];
 
 //------------------------------------------------------------
 // ---------- GRAB ELEMENTS BY ID
@@ -52,10 +54,10 @@ function newGame() {
     wrongGuesses = [];
     
     // Chooses a random Pixar character name from the array
-    var randomCharacter = pixarCharacters[Math.floor(Math.random() * pixarCharacters.length)];
+    randomCharacter = pixarCharacters[Math.floor(Math.random() * pixarCharacters.length)];
     
     // Changes letters to uppercase
-    var upperCaseWord = randomCharacter.toUpperCase();
+    upperCaseWord = randomCharacter.toUpperCase();
     
     // Puts underscores as placeholders for each letter of the current word
     for (var i = 0; i < upperCaseWord.length; i++) {
@@ -71,63 +73,6 @@ function newGame() {
     
     };
     
-    document.onkeyup = function(event) {
-        
-        // Determines which key was pressed
-        var userGuess = event.key.toUpperCase();
-
-        var correct = false;
-        var isLetter = false;
-
-        // Determines if key that is pressed is a letter
-        for (var k = 0; k < alphabet.length; k++) {
-            if (alphabet[k] === userGuess) {
-
-    
-                // Checks for a match and assigns correctly guessed letters to the appropriate place in the current word
-                for (var j = 0; j < upperCaseWord.length; j++) {
-            
-                    if (upperCaseWord[j] === userGuess) {
-                        currentWord[j] = userGuess;
-        
-                        correct = true;
-                    }
-                    
-                    // Creates variable that concatenates correctly guessed letters
-                    var winningWord = currentWord.join("");
-                    
-                    // Adds +1 to wins once winningWord equals upperCaseWord
-                    if (winningWord === upperCaseWord) {
-                        wins++;
-                        newGame();
-                    }
-                }
-                
-                // Subtracts 1 from guesses remaning if userGuess is wrong
-                if (!correct) {
-                    guessesRemaining--;
-                    wrongGuesses.push(userGuess);
-                }
-        
-                // Add 1 to losses and start new game when guesses remaining reaches 0
-                if (guessesRemaining === 0) {
-                    losses++;
-                    newGame();
-                }
-
-            }
-        }
-
-        console.log(winningWord);
-        console.log(upperCaseWord);
-
-        document.getElementById("user-guesses").innerHTML = wrongGuesses.join(" ");
-        document.getElementById("wins").innerHTML = wins;
-        document.getElementById("losses").innerHTML = losses;
-        document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
-        document.getElementById("current-word").innerHTML = currentWord.join("");
-    };
-    
     //---------- CONSOLE ---------
     // Logs the chosen Pixar character name to the console
     console.log(upperCaseWord);
@@ -135,3 +80,58 @@ function newGame() {
 };
 
 newGame();
+    
+document.onkeyup = function(event) {
+    
+    // Determines which key was pressed
+    var userGuess = event.key.toUpperCase();
+
+    var correct = false;
+    var isLetter = false;
+
+    // Determines if key that is pressed is a letter
+    for (var k = 0; k < alphabet.length; k++) {
+        if (alphabet[k] === userGuess) {
+
+
+            // Checks for a match and assigns correctly guessed letters to the appropriate place in the current word
+            for (var j = 0; j < upperCaseWord.length; j++) {
+        
+                if (upperCaseWord[j] === userGuess) {
+                    currentWord[j] = userGuess;
+                    correct = true;
+                }
+                
+                // Creates variable that concatenates correctly guessed letters
+                var winningWord = currentWord.join("");
+            }
+        }
+    }
+
+    console.log(winningWord);
+    console.log(upperCaseWord);
+
+    document.getElementById("user-guesses").innerHTML = wrongGuesses.join(" ");
+    document.getElementById("wins").innerHTML = wins;
+    document.getElementById("losses").innerHTML = losses;
+    document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
+    document.getElementById("current-word").innerHTML = currentWord.join("");
+    
+    // Adds +1 to wins once winningWord equals upperCaseWord
+    if (winningWord === upperCaseWord) {
+        wins++;
+        newGame();
+    }
+    
+    // Subtracts 1 from guesses remaning if userGuess is wrong
+    if (!correct) {
+        guessesRemaining--;
+        wrongGuesses.push(userGuess);
+    }
+
+    // Add 1 to losses and start new game when guesses remaining reaches 0
+    if (guessesRemaining === 0) {
+        losses++;
+        newGame();
+    }
+};
