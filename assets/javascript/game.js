@@ -5,6 +5,7 @@
 var wins = 0;
 var losses = 0;
 var guessesRemaining = 10;
+var characterImageOutput;
 var gameStarted = false;
 
 //------------------------------------------------------------
@@ -30,6 +31,7 @@ var currentWord = [];
 var wrongGuesses = [];
 var randomCharacter = [];
 var upperCaseWord = [];
+var characterImageLetters = [];
 
 //------------------------------------------------------------
 // ---------- GRAB ELEMENTS BY ID
@@ -59,6 +61,7 @@ function newGame() {
     guessesRemaining = 10;
     currentWord = [];
     wrongGuesses = [];
+    characterImageLetters = [];
     
     // Chooses a random Pixar character name from the array
     randomCharacter = pixarCharacters[Math.floor(Math.random() * pixarCharacters.length)];
@@ -71,8 +74,10 @@ function newGame() {
     
         if (upperCaseWord[i] === " ") {
             currentWord[i] = " ";
+            characterImageLetters[i] = "-";
         } else {
             currentWord[i] = "_";
+            characterImageLetters[i] = randomCharacter[i].toLocaleLowerCase();
         }
     
         var placeHolder = currentWord.join("");
@@ -80,9 +85,12 @@ function newGame() {
     
     };
     
+    characterImageOutput = characterImageLetters.join("");
     //---------- CONSOLE ---------
     // Logs the chosen Pixar character name to the console
     console.log(upperCaseWord);
+    console.log("This is the character letters array " + characterImageLetters);
+    console.log("This is the character output array " + characterImageOutput);
 
 };
 
@@ -117,6 +125,8 @@ document.onkeyup = function(event) {
     
     // Adds +1 to wins once winningWord equals upperCaseWord
     if (winningWord === upperCaseWord) {
+        document.getElementById("message").innerHTML = "<h2>" + randomCharacter + "</h2>";
+        document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg")
         wins++;
         newGame();
     }
