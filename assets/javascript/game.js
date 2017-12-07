@@ -50,11 +50,6 @@ for (var i = 65; i <= 90; i++) {
     alphabet[alphabet.length] = String.fromCharCode(i);
 };
 
-// Logs individual letters of the ALPHABET to the console
-// for (var i = 0; i < alphabet.length; i++) {
-//     console.log("The character at index " + [i] + " is: " + alphabet[i]);
-// };
-
 function newGame() {
 
     gameStarted = true;
@@ -69,28 +64,24 @@ function newGame() {
     // Changes letters to uppercase
     upperCaseWord = randomCharacter.toUpperCase();
     
-    // Puts underscores as placeholders for each letter of the current word
     for (var i = 0; i < upperCaseWord.length; i++) {
     
         if (upperCaseWord[i] === " ") {
-            currentWord[i] = " ";
-            characterImageLetters[i] = "-";
+            currentWord[i] = " "; // Puts a space when there is a space in the current word
+            characterImageLetters[i] = "-"; // Adds a dash for the image source
         } else {
-            currentWord[i] = "_";
-            characterImageLetters[i] = randomCharacter[i].toLocaleLowerCase();
+            currentWord[i] = "_"; // Puts underscores as placeholders for each letter of the current word
+            characterImageLetters[i] = randomCharacter[i].toLocaleLowerCase(); // Creating array to be used for image source
         }
     
-        var placeHolder = currentWord.join("");
-        document.getElementById("current-word").innerHTML = placeHolder;
-    
+        var placeHolder = currentWord.join("");    
     };
+
+    document.getElementById("current-word").innerHTML = placeHolder;
+    characterImageOutput = characterImageLetters.join(""); // To be used for image source
     
-    characterImageOutput = characterImageLetters.join("");
-    //---------- CONSOLE ---------
     // Logs the chosen Pixar character name to the console
     console.log(upperCaseWord);
-    console.log("This is the character letters array " + characterImageLetters);
-    console.log("This is the character output array " + characterImageOutput);
 
 };
 
@@ -113,9 +104,12 @@ document.onkeyup = function(event) {
         }
     }
     
-    // Subtracts 1 from guesses remaning if userGuess is wrong
-    // Adds letter to Letters Already Guessed if hasn't been guessed
-    if(!wrongGuesses.includes(userGuess) && alphabet.includes(userGuess)) {
+    // If the wrong guesses array doesn't already include the user guess
+    // AND the user guess is a letter
+    // AND the current word doesn't have the user guess
+    // Then subtract 1 from guesses remaning
+    // And add letter to Letters Already Guessed
+    if(!wrongGuesses.includes(userGuess) && alphabet.includes(userGuess) && !upperCaseWord.includes(userGuess)) {
         guessesRemaining--;
         wrongGuesses.push(userGuess);
     }
@@ -124,15 +118,21 @@ document.onkeyup = function(event) {
     var winningWord = currentWord.join("");
     
     // Adds +1 to wins once winningWord equals upperCaseWord
+    // Character name displays at top
+    // Character image displays
     if (winningWord === upperCaseWord) {
-        document.getElementById("message").innerHTML = "<h2>" + randomCharacter + "</h2>";
-        document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg")
+        document.getElementById("message").innerHTML = "<h2>You win!<br>" + randomCharacter + "</h2>";
+        document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
         wins++;
         newGame();
     }
 
     // Add 1 to losses and start new game when guesses remaining reaches 0
+    // Character name displays at top
+    // Character image displays
     if (guessesRemaining === 0) {
+        document.getElementById("message").innerHTML = "<h2>Sorry! You Lose.<br>" + randomCharacter + " was the correct character.</h2>";
+        document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
         losses++;
         newGame();
     }
