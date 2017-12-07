@@ -1,5 +1,5 @@
 //------------------------------------------------------------
-// ---------- VARIABLES
+//----------- VARIABLES
 //------------------------------------------------------------
 
 var wins = 0;
@@ -9,22 +9,22 @@ var characterImageOutput;
 var movie;
 var gameStarted = false;
 
-//------------------------------------------------------------
-// ---------- MESSAGES
-//------------------------------------------------------------
+// Sounds
 
-var messageWin = "You Win!"
-var messageLose = "You Lose!"
+var winSound = document.getElementById("win-sound");
+var loseSound = document.getElementById("lose-sound");
+var correctPress = document.getElementById("correct-press-sound");
+var wrongPress = document.getElementById("wrong-press-sound");
 
 //------------------------------------------------------------
-// ---------- ARRAYS
+//----------- ARRAYS
 //------------------------------------------------------------
 
 // Creates an array of Pixar Characters
 var pixarCharacters = ["Flik","Princess Atta","Hopper","Merida","King Fergus","Queen Elinor","Lightning McQueen","Doc Hudson","Sally Carrera","Nemo","Dory","Marlin","Joy","Sadness","Anger","James P Sullivan","Mike Wazowski","Boo","Mr Incredible","Elastigirl","Edna Mode","Buzz Lightyear","Sheriff Woody","Bo Peep","Carl Fredricksen","Ellie Fredricksen","Russell"];
 
 //------------------------------------------------------------
-// ---------- EMPTY ARRAYS
+//----------- EMPTY ARRAYS
 //------------------------------------------------------------
 
 var alphabet = [];
@@ -35,7 +35,7 @@ var upperCaseWord = [];
 var characterImageLetters = [];
 
 //------------------------------------------------------------
-// ---------- GRAB ELEMENTS BY ID
+//----------- GRAB ELEMENTS BY ID
 //------------------------------------------------------------
 
 document.getElementById("wins").innerHTML = wins;
@@ -43,7 +43,7 @@ document.getElementById("losses").innerHTML = losses;
 document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
 
 //------------------------------------------------------------
-// ---------- LOGIC
+//----------- LOGIC
 //------------------------------------------------------------
 
 // Creates alphabet array
@@ -113,6 +113,8 @@ document.onkeyup = function(event) {
     // Determines which key was pressed
     var userGuess = event.key.toUpperCase();
 
+    var isGuessCorrect = false;
+
     // Determines if key that is pressed is part of the alphabet
     if(alphabet.includes(userGuess)) {
         
@@ -121,8 +123,19 @@ document.onkeyup = function(event) {
     
             if (upperCaseWord[j] === userGuess) {
                 currentWord[j] = userGuess;
+                isGuessCorrect = true;
             }
         }
+    }
+
+    if (isGuessCorrect) {
+        correctPress.pause();
+        correctPress.currentTime = 0;
+        correctPress.play();
+    } else {
+        wrongPress.pause();
+        wrongPress.currentTime = 0;
+        wrongPress.play();
     }
     
     // If the wrong guesses array doesn't already include the user guess
@@ -144,6 +157,7 @@ document.onkeyup = function(event) {
     if (winningWord === upperCaseWord) {
         document.getElementById("message").innerHTML = "<h2>You win!<br>" + randomCharacter + " is from " + movie + "</h2>";
         document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
+        winSound.play();
         wins++;
         newGame();
     }
@@ -154,6 +168,7 @@ document.onkeyup = function(event) {
     if (guessesRemaining === 0) {
         document.getElementById("message").innerHTML = "<h2>Sorry! You Lose.<br>" + randomCharacter + " was the correct character.</h2>";
         document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
+        loseSound.play();
         losses++;
         newGame();
     }
