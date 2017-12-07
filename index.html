@@ -16,68 +16,69 @@
 
 <body>
 
-	<div class="jumbotron text-center">
-		<h1>Hangman</h1>
-		<h2>Guess the Pixar Character</h2>
-	</div> <!-- /jumbotron -->
+	<div class="wrapper">
+			
+		<div class="jumbotron text-center">
+			<h1>Hangman</h1>
+			<h2>Guess the Pixar Character</h2>
+			<div id="message"></div>
+		</div> <!-- /jumbotron -->
 
-	<div class="container">
+		<div class="container">
 
-		<div class="row text-center">
-			<div class="col-xs-12">
-				<div id="message"></div>
-			</div>
-		</div>
+			<div class="row text-center">
 
-		<div class="row text-center">
+				<div class="col-md-6">
 
-			<div class="col-md-6">
+					<img src="assets/images/pixar-logo.jpg" alt="Pixar" id="pixar-img" class="character-image responsive-img">
+					
+				</div>
 
-				<img src="assets/images/pixar-logo.jpg" alt="Pixar" id="pixar-img" class="character-image responsive-img">
-				
-			</div>
+				<div class="col-md-6">
 
-			<div class="col-md-6">
+					<h2>Press any key to get started!</h2>
 
-				<h2>Press any key to get started!</h2>
+					<div class="row">
 
-				<div class="row">
+						<div class="col-sm-3 col-sm-offset-3">
+								
+							<h3>Wins</h3>
 
-					<div class="col-sm-3 col-sm-offset-3">
-							
-						<h3>Wins</h3>
+							<p id="wins" class="focus">0</p>
 
-						<p id="wins">0</p>
+						</div>
+
+						<div class="col-sm-3">
+								
+							<h3>Losses</h3>
+
+							<p id="losses" class="focus">0</p>
+
+						</div>
 
 					</div>
 
-					<div class="col-sm-3">
-							
-						<h3>Losses</h3>
+					<h3>Current Word</h3>
 
-						<p id="losses">0</p>
+					<p id="current-word" class="focus">_</p>
 
-					</div>
+					<h3>Number of Guesses Remaining</h3>
+
+					<p id="guesses-remaining" class="focus">10</p>
+
+					<h3>Letters Already Guessed</h3>
+
+					<p id="user-guesses" class="focus"></p>
 
 				</div>
 
-				<h3>Current Word</h3>
+			</div> <!-- /row -->
+			
+		</div> <!-- /container -->
 
-				<p id="current-word">_</p>
+	</div> <!-- /wrapper -->
 
-				<h3>Number of Guesses Remaining</h3>
-
-				<p id="guesses-remaining">10</p>
-
-				<h3>Letters Already Guessed</h3>
-
-				<p id="user-guesses"></p>
-
-			</div>
-
-		</div> <!-- /row -->
-		
-	</div> <!-- /container -->
+	<footer class="footer"></footer>
 	
 	<!-- Bootstrap core JavaScript
 	================================================== -->
