@@ -6,6 +6,7 @@ var wins = 0;
 var losses = 0;
 var guessesRemaining = 10;
 var characterImageOutput;
+var movie;
 var gameStarted = false;
 
 //------------------------------------------------------------
@@ -63,6 +64,26 @@ function newGame() {
     
     // Changes letters to uppercase
     upperCaseWord = randomCharacter.toUpperCase();
+
+    if (randomCharacter === "Flik" || randomCharacter === "Princess Atta" || randomCharacter === "Hopper") {
+        movie = "A Bug's Life";
+    } else if (randomCharacter === "Merida" || randomCharacter === "King Fergus" || randomCharacter === "Queen Elinor") {
+        movie = "Brave";
+    } else if (randomCharacter === "Lightning McQueen" || randomCharacter === "Doc Hudson" || randomCharacter === "Sally Carrera") {
+        movie = "Cars";
+    } else if (randomCharacter === "Nemo" || randomCharacter === "Dory" || randomCharacter === "Marlin") {
+        movie = "Finding Nemo";
+    } else if (randomCharacter === "Joy" || randomCharacter === "Sadness" || randomCharacter === "Anger") {
+        movie = "Inside Out";
+    } else if (randomCharacter === "James P Sullivan" || randomCharacter === "Mike Wazowski" || randomCharacter === "Boo") {
+        movie = "Monsters, Inc.";
+    } else if (randomCharacter === "Mr. Incredible" || randomCharacter === "Elastigirl" || randomCharacter === "Edna Mode") {
+        movie = "The Incredibles";
+    } else if (randomCharacter === "Buzz Lightyear" || randomCharacter === "Sheriff Woody" || randomCharacter === "Bo Peep") {
+        movie = "Toy Story";
+    } else if (randomCharacter === "Carl Fredricksen" || randomCharacter === "Ellie Fredricksen" || randomCharacter === "Russell") {
+        movie = "Up";
+    };
     
     for (var i = 0; i < upperCaseWord.length; i++) {
     
@@ -121,7 +142,7 @@ document.onkeyup = function(event) {
     // Character name displays at top
     // Character image displays
     if (winningWord === upperCaseWord) {
-        document.getElementById("message").innerHTML = "<h2>You win!<br>" + randomCharacter + "</h2>";
+        document.getElementById("message").innerHTML = "<h2>You win!<br>" + randomCharacter + " is from " + movie + "</h2>";
         document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
         wins++;
         newGame();

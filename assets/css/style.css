@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.character-image {
+    margin-top: 25px;
+}
+
 #current-word {
     letter-spacing: 10px;
     font-size: 30px;
