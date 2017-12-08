@@ -21,7 +21,7 @@
 		<div class="jumbotron text-center">
 			<h1>Hangman</h1>
 			<h2>Guess the Pixar Character</h2>
-			<div id="message"><h2>Press any key to get started!</h2></div>
+			<div class="message"><h2>Press any key to get started!</h2></div>
 		</div> <!-- /jumbotron -->
 
 		<div class="container">
@@ -30,13 +30,13 @@
 
 				<div class="col-md-6">
 
-					<div id="game-image-wrapper">
+					<div class="game-image-wrapper">
 
-						<div id="video-pixar-logo" class="embed-responsive embed-responsive-16by9 pixar-logo">
+						<div class="embed-responsive embed-responsive-16by9 video-pixar-logo">
 							<iframe src="https://www.youtube.com/embed/50rAKjuTXbc?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 						</div>
 
-						<img src="assets/images/pixar-logo.jpg" alt="Pixar" id="pixar-img" class="character-image">
+						<img src="assets/images/pixar-logo.jpg" alt="Pixar" class="character-image">
 
 					</div> <!-- /game-image-wrapper -->
 					
@@ -50,7 +50,7 @@
 								
 							<h3>Wins</h3>
 
-							<p id="wins" class="focus">0</p>
+							<p class="wins focus">0</p>
 
 						</div>
 
@@ -58,7 +58,7 @@
 								
 							<h3>Losses</h3>
 
-							<p id="losses" class="focus">0</p>
+							<p class="losses focus">0</p>
 
 						</div>
 
@@ -66,15 +66,15 @@
 
 					<h3>Current Word</h3>
 
-					<p id="current-word" class="focus">&nbsp;</p>
+					<p class="current-word focus">&nbsp;</p>
 
 					<h3>Number of Guesses Remaining</h3>
 
-					<p id="guesses-remaining" class="focus">10</p>
+					<p class="guesses-remaining focus">10</p>
 
 					<h3>Letters Already Guessed</h3>
 
-					<p id="user-guesses" class="focus"></p>
+					<p class="user-guesses focus"></p>
 
 				</div>
 
@@ -86,10 +86,10 @@
 
 	<footer class="footer"></footer>
 
-	<audio id="win-sound" src="assets/audio/win.mp3" autostart="false"></audio>
-	<audio id="lose-sound" src="assets/audio/lose.mp3" autostart="false"></audio>
-	<audio id="correct-press-sound" src="assets/audio/correct-press.mp3" autostart="false"></audio>
-	<audio id="wrong-press-sound" src="assets/audio/wrong-press.mp3" autostart="false"></audio>
+	<audio class="win-sound" src="assets/audio/win.mp3" autostart="false"></audio>
+	<audio class="lose-sound" src="assets/audio/lose.mp3" autostart="false"></audio>
+	<audio class="correct-press-sound" src="assets/audio/correct-press.mp3" autostart="false"></audio>
+	<audio class="wrong-press-sound" src="assets/audio/wrong-press.mp3" autostart="false"></audio>
 	
 	<!-- Bootstrap core JavaScript
 	================================================== -->

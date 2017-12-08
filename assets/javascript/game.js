@@ -7,18 +7,25 @@ var losses = 0;
 var guessesRemaining = 10;
 var characterImageOutput;
 var movie;
-var gameImage;
 var gameStarted = false;
+
+// Divs
+
+var characterImage = document.getElementsByClassName("character-image")[0];
+var winsDiv = document.getElementsByClassName("wins")[0];
+var lossesDiv = document.getElementsByClassName("losses")[0];
+var guessesRemainingDiv = document.getElementsByClassName("guesses-remaining")[0];
+var currentWordDiv = document.getElementsByClassName("current-word")[0];
+var messageDiv = document.getElementsByClassName("message")[0];
+var userGuessesDiv = document.getElementsByClassName("user-guesses")[0];
+var youtubeVideo = document.getElementsByClassName("video-pixar-logo")[0];
 
 // Sounds
 
-var winSound = document.getElementById("win-sound");
-var loseSound = document.getElementById("lose-sound");
-var correctPress = document.getElementById("correct-press-sound");
-var wrongPress = document.getElementById("wrong-press-sound");
-
-// Youtube Video
-var youtubeVideo = document.getElementById("video-pixar-logo");
+var winSound = document.getElementsByClassName("win-sound")[0];
+var loseSound = document.getElementsByClassName("lose-sound")[0];
+var correctPress = document.getElementsByClassName("correct-press-sound")[0];
+var wrongPress = document.getElementsByClassName("wrong-press-sound")[0];
 
 //------------------------------------------------------------
 //----------- ARRAYS
@@ -37,16 +44,6 @@ var wrongGuesses = [];
 var randomCharacter = [];
 var upperCaseWord = [];
 var characterImageLetters = [];
-
-//------------------------------------------------------------
-//----------- GRAB ELEMENTS BY ID
-//------------------------------------------------------------
-
-var characterImage = document.querySelector(".character-image");
-
-document.getElementById("wins").innerHTML = wins;
-document.getElementById("losses").innerHTML = losses;
-document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
 
 //------------------------------------------------------------
 //----------- LOGIC
@@ -71,6 +68,7 @@ function newGame() {
     // Changes letters to uppercase
     upperCaseWord = randomCharacter.toUpperCase();
 
+    // Defines which movies each character is from
     if (randomCharacter === "Flik" || randomCharacter === "Princess Atta" || randomCharacter === "Hopper") {
         movie = "A Bug's Life";
     } else if (randomCharacter === "Merida" || randomCharacter === "King Fergus" || randomCharacter === "Queen Elinor") {
@@ -104,7 +102,7 @@ function newGame() {
         var placeHolder = currentWord.join("");    
     };
 
-    document.getElementById("current-word").innerHTML = placeHolder;
+    currentWordDiv.innerHTML = placeHolder;
     characterImageOutput = characterImageLetters.join(""); // To be used for image source
     
     // Logs the chosen Pixar character name to the console
@@ -160,8 +158,8 @@ document.onkeyup = function(event) {
         // Character name displays at top
         // Character image displays
         if (winningWord === upperCaseWord) {
-            document.getElementById("message").innerHTML = "<h2>You win!<br>" + randomCharacter + " is from " + movie + "</h2>";
-            document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
+            messageDiv.innerHTML = "<h2>You win!<br>" + randomCharacter + " is from " + movie + "</h2>";
+            characterImage.setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
             winSound.pause();
             winSound.currentTime = 0;
             winSound.play();
@@ -173,18 +171,18 @@ document.onkeyup = function(event) {
         // Character name displays at top
         // Character image displays
         if (guessesRemaining === 0) {
-            document.getElementById("message").innerHTML = "<h2>Sorry! You Lose.<br>" + randomCharacter + " was the correct character.</h2>";
-            document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
+            messageDiv.innerHTML = "<h2>Sorry! You Lose.<br>" + randomCharacter + " was the correct character.</h2>";
+            characterImage.setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
             loseSound.play();
             losses++;
             newGame();
         }
 
-        document.getElementById("user-guesses").innerHTML = wrongGuesses.join(" ");
-        document.getElementById("wins").innerHTML = wins;
-        document.getElementById("losses").innerHTML = losses;
-        document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
-        document.getElementById("current-word").innerHTML = currentWord.join("");
+        userGuessesDiv.innerHTML = wrongGuesses.join(" ");
+        winsDiv.innerHTML = wins;
+        lossesDiv.innerHTML = losses;
+        guessesRemainingDiv.innerHTML = guessesRemaining;
+        currentWordDiv.innerHTML = currentWord.join("");
         
         console.log(winningWord);
         console.log(upperCaseWord);
