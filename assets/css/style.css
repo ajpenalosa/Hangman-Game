@@ -1,6 +1,37 @@
+/*----------
+TYPOGRAPHY
+----------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css?family=Amiri:400,700|Raleway:400,700,900');
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway", Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #292929;
+}
+
+h2 {
+    font-family: "Amiri", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+h2.span {
+    font-weight: bold;
+}
+
+p {
+    color: #292929;
+}
+
+/*----------
+GLOBAL
+----------------------------------------*/
+
 html,
 body {
     height: 100%;
+    font-family: "Raleway", Arial, Helvetica, sans-serif
 }
 
 .wrapper {
@@ -31,12 +62,31 @@ body {
     height: 160px;
 }
 
+/*----------
+JUMBOTRON
+----------------------------------------*/
+
 .jumbotron {
     background-image: url(../images/clouds.png);
     background-repeat: no-repeat;
     background-position: center center;
     background-color: transparent;
+    padding-bottom: 0;
 }
+
+.jumbotron h1 {
+    margin-bottom: 0;
+    font-size: 90px;
+}
+
+.jumbotron h2 {
+    margin-top: 0;
+    font-size: 33px;
+}
+
+/*----------
+GAME IMAGE
+----------------------------------------*/
 
 .game-image-wrapper {
     position: relative;
@@ -67,6 +117,35 @@ body {
     transition: opacity 3000ms linear;
 }
 
+/*----------
+GAME UI
+----------------------------------------*/
+
+@keyframes pulse {
+    from {opacity:0}
+    to {opacity:1}
+}
+
+@keyframes letter-spawn {
+    0% {
+        opacity: 0;
+        font-size: 30px;
+    }
+    50% {
+        opacity: 1;
+        font-size: 40px;
+    }
+    100% {
+        opacity: 1;
+        font-size: 30px;
+    }
+}
+
+.pulse {
+    color: rgb(151, 7, 7);
+    animation: pulse 2s alternate infinite;
+}
+
 .focus {
     letter-spacing: 10px;
     font-size: 30px;
@@ -75,4 +154,9 @@ body {
 
 .activate {
     font-size: 40px;
+}
+
+.letter {
+    animation-name: letter-spawn;
+    animation-duration: 1s;
 }

@@ -136,6 +136,9 @@ document.onkeyup = function(event) {
                     letterSpan[j].innerHTML = userGuess;
                     currentWord[j] = userGuess;
                     isGuessCorrect = true;
+                    letterSpan[j].setAttribute("class","letter activate");
+                    // letterSpan[j].style.fontSize = "50px";
+                    
                 }
             }
             if (isGuessCorrect) {
@@ -166,7 +169,7 @@ document.onkeyup = function(event) {
         // Character name displays at top
         // Character image displays
         if (winningWord === upperCaseWord) {
-            messageDiv.innerHTML = "<h2>You win!<br>" + randomCharacter + " is from " + movie + "</h2>";
+            messageDiv.innerHTML = "<h1>You win!</h1><h2>" + randomCharacter + " is from " + movie + "</h2>";
             characterImage.setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
             winSound.pause();
             winSound.currentTime = 0;
@@ -179,7 +182,7 @@ document.onkeyup = function(event) {
         // Character name displays at top
         // Character image displays
         if (guessesRemaining === 0) {
-            messageDiv.innerHTML = "<h2>Sorry! You Lose.<br>" + randomCharacter + " was the correct character.</h2>";
+            messageDiv.innerHTML = "<h1>Sorry! You Lose.</h1><h2>" + randomCharacter + " was the correct character.</h2>";
             characterImage.setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
             loseSound.play();
             losses++;
@@ -194,6 +197,11 @@ document.onkeyup = function(event) {
         console.log(winningWord);
         console.log(upperCaseWord);
     } else {
+
+        // Removes the pulse effect from the get started message
+        var getStartedDiv = document.getElementsByClassName("get-started")[0];
+        getStartedDiv.classList.remove("pulse");
+
         // Fades YouTube video out slowly
         youtubeVideo.style.opacity = "0";
         characterImage.style.opacity = "1";
