@@ -21,7 +21,7 @@
 		<div class="jumbotron text-center">
 			<h1>Hangman</h1>
 			<h2>Guess the Pixar Character</h2>
-			<div id="message"></div>
+			<div id="message"><h2>Press any key to get started!</h2></div>
 		</div> <!-- /jumbotron -->
 
 		<div class="container">
@@ -30,13 +30,19 @@
 
 				<div class="col-md-6">
 
-					<img src="assets/images/pixar-logo.jpg" alt="Pixar" id="pixar-img" class="character-image responsive-img">
+					<div id="game-image-wrapper">
+
+						<div id="video-pixar-logo" class="embed-responsive embed-responsive-16by9 pixar-logo">
+							<iframe src="https://www.youtube.com/embed/50rAKjuTXbc?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+						</div>
+
+						<img src="assets/images/pixar-logo.jpg" alt="Pixar" id="pixar-img" class="character-image">
+
+					</div> <!-- /game-image-wrapper -->
 					
 				</div>
 
 				<div class="col-md-6">
-
-					<h2>Press any key to get started!</h2>
 
 					<div class="row">
 
@@ -60,7 +66,7 @@
 
 					<h3>Current Word</h3>
 
-					<p id="current-word" class="focus">_</p>
+					<p id="current-word" class="focus">&nbsp;</p>
 
 					<h3>Number of Guesses Remaining</h3>
 

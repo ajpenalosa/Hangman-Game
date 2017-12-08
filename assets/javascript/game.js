@@ -7,6 +7,7 @@ var losses = 0;
 var guessesRemaining = 10;
 var characterImageOutput;
 var movie;
+var gameImage;
 var gameStarted = false;
 
 // Sounds
@@ -15,6 +16,9 @@ var winSound = document.getElementById("win-sound");
 var loseSound = document.getElementById("lose-sound");
 var correctPress = document.getElementById("correct-press-sound");
 var wrongPress = document.getElementById("wrong-press-sound");
+
+// Youtube Video
+var youtubeVideo = document.getElementById("video-pixar-logo");
 
 //------------------------------------------------------------
 //----------- ARRAYS
@@ -37,6 +41,8 @@ var characterImageLetters = [];
 //------------------------------------------------------------
 //----------- GRAB ELEMENTS BY ID
 //------------------------------------------------------------
+
+var characterImage = document.querySelector(".character-image");
 
 document.getElementById("wins").innerHTML = wins;
 document.getElementById("losses").innerHTML = losses;
@@ -105,80 +111,90 @@ function newGame() {
     console.log(upperCaseWord);
 
 };
-
-newGame();
     
 document.onkeyup = function(event) {
+
+    if (gameStarted) {
     
-    // Determines which key was pressed
-    var userGuess = event.key.toUpperCase();
+        // Determines which key was pressed
+        var userGuess = event.key.toUpperCase();
 
-    var isGuessCorrect = false;
+        var isGuessCorrect = false;
 
-    // Determines if key that is pressed is part of the alphabet
-    if(alphabet.includes(userGuess)) {
+        // Determines if key that is pressed is part of the alphabet
+        if(alphabet.includes(userGuess)) {
+            
+            // Checks for a match and assigns correctly guessed letters to the appropriate place in the current word
+            for (var j = 0; j < upperCaseWord.length; j++) {
         
-        // Checks for a match and assigns correctly guessed letters to the appropriate place in the current word
-        for (var j = 0; j < upperCaseWord.length; j++) {
-    
-            if (upperCaseWord[j] === userGuess) {
-                currentWord[j] = userGuess;
-                isGuessCorrect = true;
+                if (upperCaseWord[j] === userGuess) {
+                    currentWord[j] = userGuess;
+                    isGuessCorrect = true;
+                }
+            }
+            if (isGuessCorrect) {
+                correctPress.pause();
+                correctPress.currentTime = 0;
+                correctPress.play();
+            } else {
+                wrongPress.pause();
+                wrongPress.currentTime = 0;
+                wrongPress.play();
             }
         }
-    }
+        
+        // If the wrong guesses array doesn't already include the user guess
+        // AND the user guess is a letter
+        // AND the current word doesn't have the user guess
+        // Then subtract 1 from guesses remaning
+        // And add letter to Letters Already Guessed
+        if(!wrongGuesses.includes(userGuess) && alphabet.includes(userGuess) && !upperCaseWord.includes(userGuess)) {
+            guessesRemaining--;
+            wrongGuesses.push(userGuess);
+        }
 
-    if (isGuessCorrect) {
-        correctPress.pause();
-        correctPress.currentTime = 0;
-        correctPress.play();
+        // Creates variable that concatenates correctly guessed letters
+        var winningWord = currentWord.join("");
+        
+        // Adds +1 to wins once winningWord equals upperCaseWord
+        // Character name displays at top
+        // Character image displays
+        if (winningWord === upperCaseWord) {
+            document.getElementById("message").innerHTML = "<h2>You win!<br>" + randomCharacter + " is from " + movie + "</h2>";
+            document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
+            winSound.pause();
+            winSound.currentTime = 0;
+            winSound.play();
+            wins++;
+            newGame();
+        }
+
+        // Add 1 to losses and start new game when guesses remaining reaches 0
+        // Character name displays at top
+        // Character image displays
+        if (guessesRemaining === 0) {
+            document.getElementById("message").innerHTML = "<h2>Sorry! You Lose.<br>" + randomCharacter + " was the correct character.</h2>";
+            document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
+            loseSound.play();
+            losses++;
+            newGame();
+        }
+
+        document.getElementById("user-guesses").innerHTML = wrongGuesses.join(" ");
+        document.getElementById("wins").innerHTML = wins;
+        document.getElementById("losses").innerHTML = losses;
+        document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
+        document.getElementById("current-word").innerHTML = currentWord.join("");
+        
+        console.log(winningWord);
+        console.log(upperCaseWord);
     } else {
-        wrongPress.pause();
-        wrongPress.currentTime = 0;
-        wrongPress.play();
-    }
-    
-    // If the wrong guesses array doesn't already include the user guess
-    // AND the user guess is a letter
-    // AND the current word doesn't have the user guess
-    // Then subtract 1 from guesses remaning
-    // And add letter to Letters Already Guessed
-    if(!wrongGuesses.includes(userGuess) && alphabet.includes(userGuess) && !upperCaseWord.includes(userGuess)) {
-        guessesRemaining--;
-        wrongGuesses.push(userGuess);
-    }
+        // Fades YouTube video out slowly
+        youtubeVideo.style.opacity = "0";
+        characterImage.style.opacity = "1";
+        setTimeout(function(){youtubeVideo.parentNode.removeChild(youtubeVideo);}, 3000);
 
-    // Creates variable that concatenates correctly guessed letters
-    var winningWord = currentWord.join("");
-    
-    // Adds +1 to wins once winningWord equals upperCaseWord
-    // Character name displays at top
-    // Character image displays
-    if (winningWord === upperCaseWord) {
-        document.getElementById("message").innerHTML = "<h2>You win!<br>" + randomCharacter + " is from " + movie + "</h2>";
-        document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
-        winSound.play();
-        wins++;
         newGame();
+        
     }
-
-    // Add 1 to losses and start new game when guesses remaining reaches 0
-    // Character name displays at top
-    // Character image displays
-    if (guessesRemaining === 0) {
-        document.getElementById("message").innerHTML = "<h2>Sorry! You Lose.<br>" + randomCharacter + " was the correct character.</h2>";
-        document.getElementById("pixar-img").setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
-        loseSound.play();
-        losses++;
-        newGame();
-    }
-
-    document.getElementById("user-guesses").innerHTML = wrongGuesses.join(" ");
-    document.getElementById("wins").innerHTML = wins;
-    document.getElementById("losses").innerHTML = losses;
-    document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
-    document.getElementById("current-word").innerHTML = currentWord.join("");
-    
-    console.log(winningWord);
-    console.log(upperCaseWord);
 };

@@ -10,7 +10,7 @@ body {
     /* Negative indent footer by its height */
     margin: 0 auto -160px;
     /* Pad bottom by footer height */
-    padding: 0 0 160px;
+    padding: 0 0 220px;
 }
 
 html { 
@@ -38,12 +38,33 @@ body {
     background-color: transparent;
 }
 
-.responsive-img {
+.game-image-wrapper {
+    position: relative;
     width: 100%;
 }
 
-.character-image {
+.pixar-logo {
+    position: absolute;
+    width: calc(100% - 30px);
     margin-top: 25px;
+    opacity: 1;
+    -webkit-transition: opacity 3000ms linear;
+    transition: opacity 3000ms linear;
+    z-index: 20;
+}
+
+.character-image-wrapper {
+    position: relative;
+}
+
+.character-image {
+    position: relative;
+    width: 100%;
+    margin-top: 25px;
+    opacity: 0;
+    z-index: 10;
+    -webkit-transition: opacity 3000ms linear;
+    transition: opacity 3000ms linear;
 }
 
 .focus {
