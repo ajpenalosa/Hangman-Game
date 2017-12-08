@@ -61,6 +61,8 @@ function newGame() {
     currentWord = [];
     wrongGuesses = [];
     characterImageLetters = [];
+
+    currentWordDiv.innerHTML = "";
     
     // Chooses a random Pixar character name from the array
     randomCharacter = pixarCharacters[Math.floor(Math.random() * pixarCharacters.length)];
@@ -90,19 +92,23 @@ function newGame() {
     };
     
     for (var i = 0; i < upperCaseWord.length; i++) {
+
+        var span = document.createElement("span");
+        span.setAttribute("class","letter");
     
         if (upperCaseWord[i] === " ") {
+            span.textContent = " ";
             currentWord[i] = " "; // Puts a space when there is a space in the current word
             characterImageLetters[i] = "-"; // Adds a dash for the image source
         } else {
+            span.textContent = "_";
             currentWord[i] = "_"; // Puts underscores as placeholders for each letter of the current word
             characterImageLetters[i] = randomCharacter[i].toLocaleLowerCase(); // Creating array to be used for image source
         }
-    
-        var placeHolder = currentWord.join("");    
+
+        currentWordDiv.appendChild(span);
     };
 
-    currentWordDiv.innerHTML = placeHolder;
     characterImageOutput = characterImageLetters.join(""); // To be used for image source
     
     // Logs the chosen Pixar character name to the console
@@ -117,6 +123,7 @@ document.onkeyup = function(event) {
         // Determines which key was pressed
         var userGuess = event.key.toUpperCase();
 
+        var letterSpan = document.getElementsByClassName("letter");
         var isGuessCorrect = false;
 
         // Determines if key that is pressed is part of the alphabet
@@ -126,6 +133,7 @@ document.onkeyup = function(event) {
             for (var j = 0; j < upperCaseWord.length; j++) {
         
                 if (upperCaseWord[j] === userGuess) {
+                    letterSpan[j].innerHTML = userGuess;
                     currentWord[j] = userGuess;
                     isGuessCorrect = true;
                 }
@@ -182,7 +190,6 @@ document.onkeyup = function(event) {
         winsDiv.innerHTML = wins;
         lossesDiv.innerHTML = losses;
         guessesRemainingDiv.innerHTML = guessesRemaining;
-        currentWordDiv.innerHTML = currentWord.join("");
         
         console.log(winningWord);
         console.log(upperCaseWord);
