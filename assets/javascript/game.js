@@ -7,6 +7,7 @@ var losses = 0;
 var guessesRemaining = 10;
 var characterImageOutput;
 var movie;
+var isFirstGame = true;
 var gameStarted = false;
 
 // Divs
@@ -23,6 +24,7 @@ var userInterface = document.getElementsByClassName("user-interface")[0];
 var gameImageWrapper = document.getElementsByClassName("game-image-wrapper")[0];
 
 // Hangman Drawing
+var drawHangman = document.getElementsByClassName("hang-man")[0];
 var drawBase = document.getElementsByClassName("base")[0];
 var drawPost = document.getElementsByClassName("post")[0];
 var drawWoodTop = document.getElementsByClassName("wood-top")[0];
@@ -118,13 +120,31 @@ function createUserInterface() {
 // Function to start a new game
 function newGame() {
 
+    // Reset game settings
+    isFirstGame = false;
     gameStarted = true;
     guessesRemaining = 10;
     currentWord = [];
     wrongGuesses = [];
     characterImageLetters = [];
 
+    userGuessesDiv.innerHTML = "";
     currentWordDiv.innerHTML = "";
+
+    characterImage.style.display = "none";
+
+    drawBase.classList.remove("draw");
+    drawPost.classList.remove("draw");
+    drawWoodTop.classList.remove("draw");
+    drawRope.classList.remove("draw");
+    drawPersonHead.classList.remove("draw");
+    drawPersonBody.classList.remove("draw");
+    drawLeftArm.classList.remove("draw");
+    drawRightArm.classList.remove("draw");
+    drawLeftLeg.classList.remove("draw");
+    drawRightLeg.classList.remove("draw");
+    drawFaceWrapper.classList.remove("draw");
+    drawSwingWrapper.classList.remove("swing-animation");
     
     // Chooses a random Pixar character name from the array
     randomCharacter = pixarCharacters[Math.floor(Math.random() * pixarCharacters.length)];
@@ -176,9 +196,20 @@ function newGame() {
     // Logs the chosen Pixar character name to the console
     console.log(upperCaseWord);
 
+    drawHangman.className += " draw";
 };
     
 document.onkeyup = function(event) {
+
+    if(isFirstGame) {
+        // Removes the pulse effect from the get started message
+        var getStartedDiv = document.getElementsByClassName("get-started")[0];
+        getStartedDiv.classList.remove("pulse");
+
+        // Removes YouTube Video and displays image
+        youtubeVideo.parentNode.removeChild(youtubeVideo);
+        
+    }
 
     if (gameStarted) {
     
@@ -224,6 +255,7 @@ document.onkeyup = function(event) {
             wrongGuesses.push(userGuess);
         }
 
+        // Draws hangman
         if (guessesRemaining === 9) {
             drawBase.className += " draw";
         } else if (guessesRemaining === 8) {
@@ -261,7 +293,9 @@ document.onkeyup = function(event) {
             winSound.currentTime = 0;
             winSound.play();
             wins++;
-            newGame();
+            drawHangman.classList.remove("draw");
+            characterImage.style.display = "block";
+            gameStarted = false;
         }
 
         // Add 1 to losses and start new game when guesses remaining reaches 0
@@ -272,7 +306,7 @@ document.onkeyup = function(event) {
             characterImage.setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
             loseSound.play();
             losses++;
-            newGame();
+            gameStarted = false;
         }
 
         userGuessesDiv.innerHTML = wrongGuesses.join(" ");
@@ -283,17 +317,6 @@ document.onkeyup = function(event) {
         console.log(winningWord);
         console.log(upperCaseWord);
     } else {
-
-        // Removes the pulse effect from the get started message
-        var getStartedDiv = document.getElementsByClassName("get-started")[0];
-        getStartedDiv.classList.remove("pulse");
-
-        // Fades YouTube video out slowly
-        youtubeVideo.style.opacity = "0";
-        characterImage.style.opacity = "1";
-        setTimeout(function(){youtubeVideo.parentNode.removeChild(youtubeVideo);}, 3000);
-
         newGame();
-        
     }
 };

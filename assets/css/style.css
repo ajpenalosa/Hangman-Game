@@ -102,14 +102,11 @@ GAME IMAGE
     z-index: 20;
 }
 
-.character-image-wrapper {
-    position: relative;
-}
-
 .character-image {
+    display: none;
     position: relative;
     width: 100%;
-    opacity: 0;
+    /* opacity: 0; */
     z-index: 10;
     -webkit-transition: opacity 3000ms linear;
     transition: opacity 3000ms linear;
