@@ -19,6 +19,22 @@ var currentWordDiv = document.getElementsByClassName("current-word")[0];
 var messageDiv = document.getElementsByClassName("message")[0];
 var userGuessesDiv = document.getElementsByClassName("user-guesses")[0];
 var youtubeVideo = document.getElementsByClassName("video-pixar-logo")[0];
+var userInterface = document.getElementsByClassName("user-interface")[0];
+var gameImageWrapper = document.getElementsByClassName("game-image-wrapper")[0];
+
+// Hangman Drawing
+var drawBase = document.getElementsByClassName("base")[0];
+var drawPost = document.getElementsByClassName("post")[0];
+var drawWoodTop = document.getElementsByClassName("wood-top")[0];
+var drawSwingWrapper = document.getElementsByClassName("swing-wrapper")[0];
+var drawRope = document.getElementsByClassName("rope")[0];
+var drawPersonHead = document.getElementsByClassName("person-head")[0];
+var drawFaceWrapper = document.getElementsByClassName("face-wrapper")[0];
+var drawPersonBody = document.getElementsByClassName("person-body")[0];
+var drawLeftArm = document.getElementsByClassName("person-left-arm")[0];
+var drawRightArm = document.getElementsByClassName("person-right-arm")[0];
+var drawLeftLeg = document.getElementsByClassName("person-left-leg")[0];
+var drawRightLeg = document.getElementsByClassName("person-right-leg")[0];
 
 // Sounds
 
@@ -54,6 +70,52 @@ for (var i = 65; i <= 90; i++) {
     alphabet[alphabet.length] = String.fromCharCode(i);
 };
 
+// Function to create the user interface
+function createUserInterface() {
+
+    // Creates a div with class of row
+    var divRow = document.createElement("div");
+    divRow.setAttribute("class","row");
+
+    // Creates Wins column
+    var winsColumn = document.createElement("div");
+    winsColumn.setAttribute("class","col-sm-3 col-sm-offset-3");
+
+    // Creates Losses column
+    var lossesColumn = document.createElement("div");
+    lossesColumn.setAttribute("class","col-sm-3");
+
+    // Appends the divs to the User Interface div
+    userInterface.appendChild(divRow);
+    divRow.appendChild(winsColumn);
+    divRow.appendChild(lossesColumn);
+
+    // Creating variables to hold the HTML for wins and losses
+    var winsHTML = "<h3>Wins</h3><p class='wins focus'>" + wins + "</p>";
+    var lossesHTML = "<h3>Losses</h3><p class='losses focus'>" + losses + "</p>";
+
+    // Set the inner HTMl contents of the wins and losses divs
+    winsColumn.innerHTML = winsHTML;
+    lossesColumn.innerHTML = lossesHTML;
+    
+    // Creates a div to hold the rest of the user interface content
+    var mainContent = document.createElement("div");
+    mainContent.setAttribute("class","main-content");
+
+    userInterface.appendChild(mainContent);
+
+    var mainContentHTML =
+        "<h3>Current Word</h3>" +
+        "<p class='current-word focus'></p>" +
+        "<h3>Number of Guesses Remaining</h3>" +
+        "<p class='guesses-remaining focus'></p>" +
+        "<h3>Letters Already Guessed</h3>" +
+        "<p class='user-guesses focus'></p>";
+
+    mainContent.innerHTML = mainContentHTML;
+}
+
+// Function to start a new game
 function newGame() {
 
     gameStarted = true;
@@ -155,11 +217,35 @@ document.onkeyup = function(event) {
         // If the wrong guesses array doesn't already include the user guess
         // AND the user guess is a letter
         // AND the current word doesn't have the user guess
-        // Then subtract 1 from guesses remaning
+        // Then subtract 1 from guesses remaining
         // And add letter to Letters Already Guessed
-        if(!wrongGuesses.includes(userGuess) && alphabet.includes(userGuess) && !upperCaseWord.includes(userGuess)) {
+        if (!wrongGuesses.includes(userGuess) && alphabet.includes(userGuess) && !upperCaseWord.includes(userGuess)) {
             guessesRemaining--;
             wrongGuesses.push(userGuess);
+        }
+
+        if (guessesRemaining === 9) {
+            drawBase.className += " draw";
+        } else if (guessesRemaining === 8) {
+            drawPost.className += " draw";
+        } else if (guessesRemaining === 7) {
+            drawWoodTop.className += " draw";
+        } else if (guessesRemaining === 6) {
+            drawRope.className += " draw";
+        } else if (guessesRemaining === 5) {
+            drawPersonHead.className += " draw";
+        } else if (guessesRemaining === 4) {
+            drawPersonBody.className += " draw";
+        } else if (guessesRemaining === 3) {
+            drawLeftArm.className += " draw";
+        } else if (guessesRemaining === 2) {
+            drawRightArm.className += " draw";
+        } else if (guessesRemaining === 1) {
+            drawLeftLeg.className += " draw";
+        } else if (guessesRemaining === 0) {
+            drawRightLeg.className += " draw";
+            drawFaceWrapper.className += " draw";
+            drawSwingWrapper.className += " swing-animation";
         }
 
         // Creates variable that concatenates correctly guessed letters
