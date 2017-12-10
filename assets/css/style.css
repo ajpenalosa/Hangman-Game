@@ -167,6 +167,7 @@ HANGMAN DRAWING
     background-color: #000;
     display: none;
 }
+
 .post {
     position: absolute;
     right: 20%;
@@ -175,6 +176,7 @@ HANGMAN DRAWING
     background-color: #000;
     display: none;
 }
+
 .wood-top {
     position: absolute;
     left: 50%;
@@ -349,21 +351,6 @@ GAME USER INTERFACE
     to {opacity:1}
 }
 
-@keyframes letter-spawn {
-    0% {
-        opacity: 0;
-        font-size: 30px;
-    }
-    50% {
-        opacity: 1;
-        font-size: 40px;
-    }
-    100% {
-        opacity: 1;
-        font-size: 30px;
-    }
-}
-
 /*---- Message ----*/
 
 h2.new-game {
@@ -378,25 +365,9 @@ h2.new-game {
     font-size: 30px;
 }
 
-.user-interface {
-    display: none;
-    
-}
-
 .pulse {
     color: rgb(151, 7, 7);
     animation: pulse 2s alternate infinite;
-}
-
-.focus {
-    letter-spacing: 10px;
-    font-size: 40px;
-    font-weight: bold;
-}
-
-.letter {
-    animation-name: letter-spawn;
-    animation-duration: 1s;
 }
 
 /*----- Game End -----*/
@@ -423,6 +394,37 @@ h2.game-end span {
 }
 
 /*----- Current Word Area -----*/
+
+.user-interface {
+    display: none;
+    
+}
+
+@keyframes letter-spawn {
+    0% {
+        opacity: 0;
+        font-size: 0;
+    }
+    50% {
+        opacity: 1;
+        font-size: 50px;
+    }
+    100% {
+        opacity: 1;
+        font-size: 40px;
+    }
+}
+
+.letter {
+    animation-name: letter-spawn;
+    animation-duration: 1s;
+}
+
+.current-word {
+    letter-spacing: 10px;
+    font-size: 40px;
+    font-weight: bold;
+}
 
 .current-word-wrapper {
     padding: 30px 0;

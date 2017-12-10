@@ -40,6 +40,7 @@ var drawRightLeg = document.getElementsByClassName("person-right-leg")[0];
 
 // Sounds
 
+var newGameSound = document.getElementsByClassName("new-game-sound")[0];
 var winSound = document.getElementsByClassName("win-sound")[0];
 var loseSound = document.getElementsByClassName("lose-sound")[0];
 var correctPress = document.getElementsByClassName("correct-press-sound")[0];
@@ -74,6 +75,15 @@ for (var i = 65; i <= 90; i++) {
 
 // Function to start a new game
 function newGame() {
+
+    // Stops win and lose sounds
+    winSound.pause();
+    winSound.currentTime = 0;
+    loseSound.pause();
+    loseSound.currentTime = 0;
+
+    // Plays new game sound
+    newGameSound.play();
 
     // Reset game settings
     isFirstGame = false;
@@ -123,7 +133,7 @@ function newGame() {
         movie = "Inside Out";
     } else if (randomCharacter === "James P Sullivan" || randomCharacter === "Mike Wazowski" || randomCharacter === "Boo") {
         movie = "Monsters, Inc.";
-    } else if (randomCharacter === "Mr. Incredible" || randomCharacter === "Elastigirl" || randomCharacter === "Edna Mode") {
+    } else if (randomCharacter === "Mr Incredible" || randomCharacter === "Elastigirl" || randomCharacter === "Edna Mode") {
         movie = "The Incredibles";
     } else if (randomCharacter === "Buzz Lightyear" || randomCharacter === "Sheriff Woody" || randomCharacter === "Bo Peep") {
         movie = "Toy Story";
@@ -160,11 +170,6 @@ function newGame() {
     
 document.onkeyup = function(event) {
 
-    if(isFirstGame) {
-        // Removes YouTube Video and displays image
-        youtubeVideo.parentNode.removeChild(youtubeVideo);
-    }
-
     if (gameStarted) {
     
         // Determines which key was pressed
@@ -183,8 +188,6 @@ document.onkeyup = function(event) {
                     letterSpan[j].innerHTML = userGuess;
                     currentWord[j] = userGuess;
                     isGuessCorrect = true;
-                    letterSpan[j].setAttribute("class","letter activate");
-                    // letterSpan[j].style.fontSize = "50px";
                     
                 }
             }
@@ -246,7 +249,7 @@ document.onkeyup = function(event) {
             "<h2 class='game-end'>You win!<br><span>" +
             randomCharacter +
             " is from " + movie + "</span></h2>" +
-            "<h3 class='get-started pulse'>Press any key to get started!</h3>";
+            "<h3 class='get-started pulse'>Press space to play again!</h3>";
 
             winSound.pause();
             winSound.currentTime = 0;
@@ -270,7 +273,7 @@ document.onkeyup = function(event) {
             "<h2 class='game-end'>Sorry! You Lose.<br><span>" +
             randomCharacter +
             " was the correct character.</span></h2>" +
-            "<h3 class='get-started pulse'>Press any key to get started!</h3>";
+            "<h3 class='get-started pulse'>Press space to play again!</h3>";
 
             loseSound.play();
             losses++;
@@ -289,6 +292,16 @@ document.onkeyup = function(event) {
         console.log(winningWord);
         console.log(upperCaseWord);
     } else {
-        newGame();
+        
+        var keyPress = event.key;
+
+        // Game starts with any key if first game, but next games only start with space bar
+        if (keyPress === " " || isFirstGame) {
+            if(isFirstGame) {
+                // Removes YouTube Video
+                youtubeVideo.parentNode.removeChild(youtubeVideo);
+            }
+            newGame();
+        }
     }
 };
