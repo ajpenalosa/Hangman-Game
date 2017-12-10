@@ -2,10 +2,10 @@
 TYPOGRAPHY
 ----------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css?family=Amiri:400,700|Raleway:400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Amiri:400,700|Lato:400,700,900');
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Raleway", Arial, Helvetica, sans-serif;
+    font-family: "Lato", Arial, Helvetica, sans-serif;
     text-transform: uppercase;
     font-weight: 900;
     color: #292929;
@@ -31,7 +31,7 @@ GLOBAL
 html,
 body {
     height: 100%;
-    font-family: "Raleway", Arial, Helvetica, sans-serif
+    font-family: "Lato", Arial, Helvetica, sans-serif
 }
 
 .wrapper {
@@ -75,13 +75,14 @@ JUMBOTRON
 }
 
 .jumbotron h1 {
+    color: #02887F;
     margin-bottom: 0;
-    font-size: 90px;
+    font-size: 70px;
 }
 
 .jumbotron h2 {
     margin-top: 0;
-    font-size: 33px;
+    font-size: 54px;
 }
 
 /*----------
@@ -91,6 +92,15 @@ GAME IMAGE
 .game-image-wrapper {
     position: relative;
     width: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 30px;
+    border: 8px solid rgba(255, 255, 255, 0.4);
+}
+
+.game-image-wrapper .padding {
+    position: relative;
 }
 
 .video-pixar-logo {
@@ -100,10 +110,10 @@ GAME IMAGE
     -webkit-transition: opacity 3000ms linear;
     transition: opacity 3000ms linear;
     z-index: 20;
+    background-size: 100%;
 }
 
 .character-image {
-    display: none;
     position: relative;
     width: 100%;
     /* opacity: 0; */
@@ -133,6 +143,12 @@ HANGMAN DRAWING
     width: 100%;
     height: 400px;
     display: none;
+}
+
+.hang-man .padding {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .base {
@@ -317,7 +333,7 @@ HANGMAN DRAWING
 }
 
 /*----------
-GAME UI
+GAME USER INTERFACE
 ----------------------------------------*/
 
 @keyframes pulse {
@@ -340,6 +356,23 @@ GAME UI
     }
 }
 
+.message {
+    padding-top: 30px;
+}
+
+.message h2 {
+    font-size: 50px;
+}
+
+.message h3 {
+    font-size: 30px;
+}
+
+.user-interface {
+    display: none;
+    
+}
+
 .pulse {
     color: rgb(151, 7, 7);
     animation: pulse 2s alternate infinite;
@@ -347,12 +380,8 @@ GAME UI
 
 .focus {
     letter-spacing: 10px;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.activate {
     font-size: 40px;
+    font-weight: bold;
 }
 
 .letter {

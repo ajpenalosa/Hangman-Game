@@ -72,51 +72,6 @@ for (var i = 65; i <= 90; i++) {
     alphabet[alphabet.length] = String.fromCharCode(i);
 };
 
-// Function to create the user interface
-function createUserInterface() {
-
-    // Creates a div with class of row
-    var divRow = document.createElement("div");
-    divRow.setAttribute("class","row");
-
-    // Creates Wins column
-    var winsColumn = document.createElement("div");
-    winsColumn.setAttribute("class","col-sm-3 col-sm-offset-3");
-
-    // Creates Losses column
-    var lossesColumn = document.createElement("div");
-    lossesColumn.setAttribute("class","col-sm-3");
-
-    // Appends the divs to the User Interface div
-    userInterface.appendChild(divRow);
-    divRow.appendChild(winsColumn);
-    divRow.appendChild(lossesColumn);
-
-    // Creating variables to hold the HTML for wins and losses
-    var winsHTML = "<h3>Wins</h3><p class='wins focus'>" + wins + "</p>";
-    var lossesHTML = "<h3>Losses</h3><p class='losses focus'>" + losses + "</p>";
-
-    // Set the inner HTMl contents of the wins and losses divs
-    winsColumn.innerHTML = winsHTML;
-    lossesColumn.innerHTML = lossesHTML;
-    
-    // Creates a div to hold the rest of the user interface content
-    var mainContent = document.createElement("div");
-    mainContent.setAttribute("class","main-content");
-
-    userInterface.appendChild(mainContent);
-
-    var mainContentHTML =
-        "<h3>Current Word</h3>" +
-        "<p class='current-word focus'></p>" +
-        "<h3>Number of Guesses Remaining</h3>" +
-        "<p class='guesses-remaining focus'></p>" +
-        "<h3>Letters Already Guessed</h3>" +
-        "<p class='user-guesses focus'></p>";
-
-    mainContent.innerHTML = mainContentHTML;
-}
-
 // Function to start a new game
 function newGame() {
 
@@ -131,7 +86,10 @@ function newGame() {
     userGuessesDiv.innerHTML = "";
     currentWordDiv.innerHTML = "";
 
+    // Sets which game objects display
     characterImage.style.display = "none";
+    messageDiv.style.display = "none";
+    userInterface.style.display = "block";
 
     drawBase.classList.remove("draw");
     drawPost.classList.remove("draw");
@@ -192,6 +150,7 @@ function newGame() {
     };
 
     characterImageOutput = characterImageLetters.join(""); // To be used for image source
+    characterImage.setAttribute("src", "assets/images/" + characterImageOutput +".jpg"); // Sets image source
     
     // Logs the chosen Pixar character name to the console
     console.log(upperCaseWord);
@@ -202,13 +161,8 @@ function newGame() {
 document.onkeyup = function(event) {
 
     if(isFirstGame) {
-        // Removes the pulse effect from the get started message
-        var getStartedDiv = document.getElementsByClassName("get-started")[0];
-        getStartedDiv.classList.remove("pulse");
-
         // Removes YouTube Video and displays image
         youtubeVideo.parentNode.removeChild(youtubeVideo);
-        
     }
 
     if (gameStarted) {
@@ -287,8 +241,13 @@ document.onkeyup = function(event) {
         // Character name displays at top
         // Character image displays
         if (winningWord === upperCaseWord) {
-            messageDiv.innerHTML = "<h1>You win!</h1><h2>" + randomCharacter + " is from " + movie + "</h2>";
-            characterImage.setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
+
+            messageDiv.innerHTML =
+            "<h1>You win!</h1><h2>" +
+            randomCharacter +
+            " is from " + movie + "</h2>" +
+            "<h3 class='get-started pulse'>Press any key to get started!</h3>";
+
             winSound.pause();
             winSound.currentTime = 0;
             winSound.play();
@@ -296,17 +255,30 @@ document.onkeyup = function(event) {
             drawHangman.classList.remove("draw");
             characterImage.style.display = "block";
             gameStarted = false;
+            
+            // Sets which game objects display
+            messageDiv.style.display = "block";
+            userInterface.style.display = "none";
         }
 
         // Add 1 to losses and start new game when guesses remaining reaches 0
         // Character name displays at top
         // Character image displays
         if (guessesRemaining === 0) {
-            messageDiv.innerHTML = "<h1>Sorry! You Lose.</h1><h2>" + randomCharacter + " was the correct character.</h2>";
-            characterImage.setAttribute("src", "assets/images/" + characterImageOutput +".jpg");
+
+            messageDiv.innerHTML =
+            "<h1>Sorry! You Lose.</h1><h2>" +
+            randomCharacter +
+            " was the correct character.</h2>" +
+            "<h3 class='get-started pulse'>Press any key to get started!</h3>";
+
             loseSound.play();
             losses++;
             gameStarted = false;
+            
+            // Sets which game objects display
+            messageDiv.style.display = "block";
+            userInterface.style.display = "none";
         }
 
         userGuessesDiv.innerHTML = wrongGuesses.join(" ");

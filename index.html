@@ -20,7 +20,7 @@
 			
 		<div class="jumbotron text-center">
 			<h1>Hangman</h1>
-			<h2>Guess the Pixar Character</h2>
+			<h2>Pixar Edition</h2>
 		</div> <!-- /jumbotron -->
 
 		<div class="container">
@@ -30,79 +30,90 @@
 
 					<div class="game-image-wrapper">
 
-						<div class="embed-responsive embed-responsive-16by9 video-pixar-logo">
-							<iframe src="https://www.youtube.com/embed/50rAKjuTXbc?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-						</div>
+						<div class="padding">
 
-						<img src="assets/images/pixar-logo.jpg" alt="Pixar" class="character-image">
+							<div class="embed-responsive embed-responsive-16by9 video-pixar-logo">
+								<iframe src="https://www.youtube.com/embed/50rAKjuTXbc?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+							</div>
 
-                        <!-- Hangman Drawing -->
-                        <div class="hang-man">
-							<div class="base"></div>
-							<div class="post"></div>
-							<div class="wood-top"></div>
-							<div class="swing-wrapper">
-								<div class="rope"></div>
-								<div class="person-head">
-									<div class="face-wrapper">
-										<div class="left-eye-criss"></div>
-										<div class="left-eye-cross"></div>
-										<div class="right-eye-criss"></div>
-										<div class="right-eye-cross"></div>
-										<div class="sad-face"></div>
+							<img src="assets/images/pixar-logo.jpg" alt="Pixar" class="character-image">
+
+							<!-- Hangman Drawing -->
+							<div class="hang-man">
+								<div class="padding">
+									<div class="base"></div>
+									<div class="post"></div>
+									<div class="wood-top"></div>
+									<div class="swing-wrapper">
+										<div class="rope"></div>
+										<div class="person-head">
+											<div class="face-wrapper">
+												<div class="left-eye-criss"></div>
+												<div class="left-eye-cross"></div>
+												<div class="right-eye-criss"></div>
+												<div class="right-eye-cross"></div>
+												<div class="sad-face"></div>
+											</div>
+										</div>
+										<div class="person-body"></div>
+										<div class="person-left-arm"></div>
+										<div class="person-right-arm"></div>
+										<div class="person-left-leg"></div>
+										<div class="person-right-leg"></div>
 									</div>
 								</div>
-								<div class="person-body"></div>
-								<div class="person-left-arm"></div>
-								<div class="person-right-arm"></div>
-								<div class="person-left-leg"></div>
-								<div class="person-right-leg"></div>
-							</div>
-						</div> <!-- /hang-man -->
+							</div> <!-- /hang-man -->
+
+						</div> <!-- /padding -->
 
 					</div> <!-- /game-image-wrapper -->
 					
-				</div>
+				</div> <!-- /row -->
 
 				<div class="col-md-6">
 
-					<div class="message"><h3 class="get-started pulse">Press any key to get started!</h3></div>
+					<div class="message">
+						<h2>Guess the Pixar Character</h2>
+						<h3 class="get-started pulse">Press any key to get started!</h3>
+					</div> <!-- /message -->
 
-					<div class="user-interface"></div>
+					<div class="user-interface">
 
-					<div class="row">
+						<div class="row">
 
-						<div class="col-sm-3 col-sm-offset-3">
-								
-							<h3>Wins</h3>
+							<div class="col-sm-3 col-sm-offset-3">
+									
+								<h3>Wins</h3>
 
-							<p class="wins focus">0</p>
+								<p class="wins focus">0</p>
+
+							</div>
+
+							<div class="col-sm-3">
+									
+								<h3>Losses</h3>
+
+								<p class="losses focus">0</p>
+
+							</div>
 
 						</div>
 
-						<div class="col-sm-3">
-								
-							<h3>Losses</h3>
+						<h3>Current Word</h3>
 
-							<p class="losses focus">0</p>
+						<p class="current-word focus">&nbsp;</p>
 
-						</div>
+						<h3>Number of Guesses Remaining</h3>
 
-					</div>
+						<p class="guesses-remaining focus">10</p>
 
-					<h3>Current Word</h3>
+						<h3>Letters Already Guessed</h3>
 
-					<p class="current-word focus">&nbsp;</p>
+						<p class="user-guesses focus"></p>
 
-					<h3>Number of Guesses Remaining</h3>
+					</div> <!-- /user-interface -->
 
-					<p class="guesses-remaining focus">10</p>
-
-					<h3>Letters Already Guessed</h3>
-
-					<p class="user-guesses focus"></p>
-
-				</div>
+				</div> <!-- /column -->
 
 			</div> <!-- /row -->
 			
