@@ -16,7 +16,7 @@ var characterImage = document.getElementsByClassName("character-image")[0];
 var winsDiv = document.getElementsByClassName("wins")[0];
 var lossesDiv = document.getElementsByClassName("losses")[0];
 var guessesRemainingDiv = document.getElementsByClassName("guesses-remaining")[0];
-var currentWordDiv = document.getElementsByClassName("current-word")[0];
+var currentWordP = document.getElementsByClassName("current-word")[0];
 var messageDiv = document.getElementsByClassName("message")[0];
 var userGuessesDiv = document.getElementsByClassName("user-guesses")[0];
 var youtubeVideo = document.getElementsByClassName("video-pixar-logo")[0];
@@ -94,13 +94,14 @@ function newGame() {
     characterImageLetters = [];
 
     userGuessesDiv.innerHTML = "";
-    currentWordDiv.innerHTML = "";
+    currentWordP.innerHTML = "";
 
-    // Sets which game objects display
+    // Sets which game elements display
     characterImage.style.display = "none";
     messageDiv.style.display = "none";
     userInterface.style.display = "block";
 
+    // Resets hangman drawing
     drawBase.classList.remove("draw");
     drawPost.classList.remove("draw");
     drawWoodTop.classList.remove("draw");
@@ -141,22 +142,25 @@ function newGame() {
         movie = "Up";
     };
     
+    // Looping through the chosen character name
     for (var i = 0; i < upperCaseWord.length; i++) {
 
+        // Creates a span with class of letter
         var span = document.createElement("span");
         span.setAttribute("class","letter");
     
+        // If the letter is a space
         if (upperCaseWord[i] === " ") {
-            span.textContent = " ";
+            span.textContent = " "; // Puts a space in the span
             currentWord[i] = " "; // Puts a space when there is a space in the current word
             characterImageLetters[i] = "-"; // Adds a dash for the image source
         } else {
-            span.textContent = "_";
+            span.textContent = "_"; // Puts an underscore in the span
             currentWord[i] = "_"; // Puts underscores as placeholders for each letter of the current word
             characterImageLetters[i] = randomCharacter[i].toLocaleLowerCase(); // Creating array to be used for image source
         }
 
-        currentWordDiv.appendChild(span);
+        currentWordP.appendChild(span); // Appends the spans to p.current-word
     };
 
     characterImageOutput = characterImageLetters.join(""); // To be used for image source
@@ -165,7 +169,7 @@ function newGame() {
     // Logs the chosen Pixar character name to the console
     console.log(upperCaseWord);
 
-    drawHangman.className += " draw";
+    drawHangman.className += " draw"; // Makes the hangman div visible
 };
     
 document.onkeyup = function(event) {
@@ -187,15 +191,14 @@ document.onkeyup = function(event) {
                 if (upperCaseWord[j] === userGuess) {
                     letterSpan[j].innerHTML = userGuess;
                     currentWord[j] = userGuess;
-                    isGuessCorrect = true;
-                    
+                    isGuessCorrect = true; // Sets isGuessCorrect to true to play correct guess sound
                 }
             }
-            if (isGuessCorrect) {
+            if (isGuessCorrect) { // Plays correct guess sound
                 correctPress.pause();
                 correctPress.currentTime = 0;
                 correctPress.play();
-            } else {
+            } else { // Plays wrong guess sound
                 wrongPress.pause();
                 wrongPress.currentTime = 0;
                 wrongPress.play();
@@ -212,7 +215,7 @@ document.onkeyup = function(event) {
             wrongGuesses.push(userGuess);
         }
 
-        // Draws hangman
+        // Draws a line of hangman after each wrong guess
         if (guessesRemaining === 9) {
             drawBase.className += " draw";
         } else if (guessesRemaining === 8) {
@@ -245,18 +248,21 @@ document.onkeyup = function(event) {
         // Character image displays
         if (winningWord === upperCaseWord) {
 
+            // Message that displays when player wins
             messageDiv.innerHTML =
             "<h2 class='game-end'>You win!<br><span>" +
             randomCharacter +
             " is from " + movie + "</span></h2>" +
             "<h3 class='get-started pulse'>Press space to play again!</h3>";
 
+            // Resets the win sound before playing
             winSound.pause();
             winSound.currentTime = 0;
             winSound.play();
+
             wins++;
-            drawHangman.classList.remove("draw");
-            characterImage.style.display = "block";
+            drawHangman.classList.remove("draw"); // Hides the hangman drawing
+            characterImage.style.display = "block"; // Shows image of the correct character
             gameStarted = false;
             
             // Sets which game objects display
@@ -265,18 +271,20 @@ document.onkeyup = function(event) {
         }
 
         // Add 1 to losses and start new game when guesses remaining reaches 0
-        // Character name displays at top
-        // Character image displays
+        // Character name displays
         if (guessesRemaining === 0) {
 
+            // Message that displays when winner loses
             messageDiv.innerHTML =
             "<h2 class='game-end'>Sorry! You Lose.<br><span>" +
             randomCharacter +
             " was the correct character.</span></h2>" +
             "<h3 class='get-started pulse'>Press space to play again!</h3>";
 
+            // Resets lose sound before playing
             loseSound.play();
             losses++;
+
             gameStarted = false;
             
             // Sets which game objects display
@@ -284,6 +292,7 @@ document.onkeyup = function(event) {
             userInterface.style.display = "none";
         }
 
+        // Updates scoreboard values in the browser
         userGuessesDiv.innerHTML = wrongGuesses.join(" ");
         winsDiv.innerHTML = wins;
         lossesDiv.innerHTML = losses;

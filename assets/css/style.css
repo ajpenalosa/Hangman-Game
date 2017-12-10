@@ -2,13 +2,24 @@
 TYPOGRAPHY
 ----------------------------------------*/
 
+/*
+Size Chart
+14px = 1em
+20px = 1.429em
+30px = 2.143em
+40px = 2.857em
+50px = 3.571em
+54px = 3.857em
+70px = 5em
+*/
+
 @import url('https://fonts.googleapis.com/css?family=Amiri:400,700|Lato:400,700,900');
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Lato", Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
     font-weight: 900;
     color: #292929;
+    text-transform: uppercase;
 }
 
 h2 {
@@ -31,17 +42,7 @@ GLOBAL
 html,
 body {
     height: 100%;
-    font-family: "Lato", Arial, Helvetica, sans-serif
-}
-
-.wrapper {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    /* Negative indent footer by its height */
-    margin: 0 auto -160px;
-    /* Pad bottom by footer height */
-    padding: 0 0 220px;
+    font-family: "Lato", Arial, Helvetica, sans-serif;
 }
 
 html { 
@@ -50,6 +51,15 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto;
+    /* Negative indent footer by its height */
+    margin: 0 auto -160px;
+    /* Pad bottom by footer height (or more) */
+    padding: 0 0 220px;
 }
 
 body {
@@ -83,14 +93,14 @@ JUMBOTRON
 }
 
 .jumbotron h1 {
+    font-size: 5em;
     color: #02887F;
     margin-bottom: 0;
-    font-size: 70px;
 }
 
 .jumbotron h2 {
+    font-size: 3.857em;
     margin-top: 0;
-    font-size: 54px;
 }
 
 /*----------
@@ -102,9 +112,9 @@ IMAGE AREA
     width: 100%;
     background: rgba(255, 255, 255, 0.4);
     box-sizing: border-box;
-    padding: 20px;
     border-radius: 30px;
     border: 8px solid rgba(255, 255, 255, 0.4);
+    padding: 20px;
 }
 
 .game-image-wrapper .padding {
@@ -117,14 +127,13 @@ IMAGE AREA
     opacity: 1;
     -webkit-transition: opacity 3000ms linear;
     transition: opacity 3000ms linear;
-    z-index: 20;
     background-size: 100%;
+    z-index: 20;
 }
 
 .character-image {
     position: relative;
     width: 100%;
-    /* opacity: 0; */
     z-index: 10;
     -webkit-transition: opacity 3000ms linear;
     transition: opacity 3000ms linear;
@@ -347,8 +356,12 @@ GAME USER INTERFACE
 ----------------------------------------*/
 
 @keyframes pulse {
-    from {opacity:0}
-    to {opacity:1}
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /*---- Message ----*/
@@ -358,11 +371,11 @@ h2.new-game {
 }
 
 .message h2 {
-    font-size: 50px;
+    font-size: 3.571em;
 }
 
 .message h3 {
-    font-size: 30px;
+    font-size: 2.143em;
 }
 
 .pulse {
@@ -376,15 +389,15 @@ h2.game-end {
     width: 100%;
     font-family: "Lato", Arial, Helvetica, sans-serif;
     font-weight: 900;
-    margin-bottom: 50px;
     color: #A6C043;
+    margin-bottom: 50px;
 }
 
 h2.game-end span {
     display: block;
     width: 100%;
     font-family: "Amiri", Arial, Helvetica, sans-serif;
-    font-size: 30px;
+    font-size: 0.6em;
     font-weight: 400;
     color: #292929;
     border-top: 5px solid rgba(0, 0, 0, 0.2);
@@ -394,11 +407,6 @@ h2.game-end span {
 }
 
 /*----- Current Word Area -----*/
-
-.user-interface {
-    display: none;
-    
-}
 
 @keyframes letter-spawn {
     0% {
@@ -415,15 +423,20 @@ h2.game-end span {
     }
 }
 
+.user-interface {
+    display: none;
+    
+}
+
 .letter {
     animation-name: letter-spawn;
     animation-duration: 1s;
 }
 
 .current-word {
-    letter-spacing: 10px;
-    font-size: 40px;
+    font-size: 2.857em;
     font-weight: bold;
+    letter-spacing: 10px;
 }
 
 .current-word-wrapper {
@@ -442,42 +455,37 @@ h2.game-end span {
 }
 
 .score h4 {
-    background-color: #879D3B;
+    font-weight: 700;
     color: #FFF;
-    padding: 6px;
+    background-color: #879D3B;
     border: 2px solid rgb(171, 194, 67);
     border-radius: 7px;
-    font-weight: 700;
+    padding: 6px;
 }
 
 .score-number {
-    color: #FFF;
+    font-size: 1.429em;
     font-weight: bold;
-    font-size: 20px;
+    color: #FFF;
 }
 
 .guesses-wrapper h4 {
-    background: rgb(116, 69, 44);
-    padding: 10px 0;
-    border-radius: 7px;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
+    font-size: 1em;
     font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgb(116, 69, 44);
+    border-radius: 7px;
+    padding: 10px 0;
 }
 
 .guesses-wrapper p {
+    font-size: 1.429em;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 20px;
 }
 
 /* -----------------------------------
 	Responsive CSS
 --------------------------------------------------------------------------------------------- */
-
-/* Small devices (tablets, 768px and up) @screen-sm-min */
-@media (min-width: 768px) {
-	
-}
 
 /* Medium devices (desktops, 992px and up) @screen-md-min */
 @media (min-width: 992px) {
@@ -485,13 +493,8 @@ h2.game-end span {
         display: flex;
     }
     .score-board {
-        width: calc(100% - 30px);
         position: absolute;
+        width: calc(100% - 30px);
         bottom: 0;
     }
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
 }
