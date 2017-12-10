@@ -243,9 +243,9 @@ document.onkeyup = function(event) {
         if (winningWord === upperCaseWord) {
 
             messageDiv.innerHTML =
-            "<h1>You win!</h1><h2>" +
+            "<h2 class='game-end'>You win!<br><span>" +
             randomCharacter +
-            " is from " + movie + "</h2>" +
+            " is from " + movie + "</span></h2>" +
             "<h3 class='get-started pulse'>Press any key to get started!</h3>";
 
             winSound.pause();
@@ -267,9 +267,9 @@ document.onkeyup = function(event) {
         if (guessesRemaining === 0) {
 
             messageDiv.innerHTML =
-            "<h1>Sorry! You Lose.</h1><h2>" +
+            "<h2 class='game-end'>Sorry! You Lose.<br><span>" +
             randomCharacter +
-            " was the correct character.</h2>" +
+            " was the correct character.</span></h2>" +
             "<h3 class='get-started pulse'>Press any key to get started!</h3>";
 
             loseSound.play();

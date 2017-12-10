@@ -62,6 +62,14 @@ body {
     height: 160px;
 }
 
+.main-row {
+    display: block;
+}
+
+.flexing {
+    position: relative;
+}
+
 /*----------
 JUMBOTRON
 ----------------------------------------*/
@@ -86,7 +94,7 @@ JUMBOTRON
 }
 
 /*----------
-GAME IMAGE
+IMAGE AREA
 ----------------------------------------*/
 
 .game-image-wrapper {
@@ -356,8 +364,10 @@ GAME USER INTERFACE
     }
 }
 
-.message {
-    padding-top: 30px;
+/*---- Message ----*/
+
+h2.new-game {
+    margin: 60px 0;
 }
 
 .message h2 {
@@ -387,4 +397,99 @@ GAME USER INTERFACE
 .letter {
     animation-name: letter-spawn;
     animation-duration: 1s;
+}
+
+/*----- Game End -----*/
+
+h2.game-end {
+    width: 100%;
+    font-family: "Lato", Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    margin-bottom: 50px;
+    color: #A6C043;
+}
+
+h2.game-end span {
+    display: block;
+    width: 100%;
+    font-family: "Amiri", Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #292929;
+    border-top: 5px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 5px solid rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    padding: 20px 0;
+}
+
+/*----- Current Word Area -----*/
+
+.current-word-wrapper {
+    padding: 30px 0;
+}
+
+/*----- Score Board -----*/
+
+.score-board {
+    width: 100%;
+    background: #4F3222;
+    border: 8px solid #1C1411;
+    border-radius: 16px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.score h4 {
+    background-color: #879D3B;
+    color: #FFF;
+    padding: 6px;
+    border: 2px solid rgb(171, 194, 67);
+    border-radius: 7px;
+    font-weight: 700;
+}
+
+.score-number {
+    color: #FFF;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.guesses-wrapper h4 {
+    background: rgb(116, 69, 44);
+    padding: 10px 0;
+    border-radius: 7px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.guesses-wrapper p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 20px;
+}
+
+/* -----------------------------------
+	Responsive CSS
+--------------------------------------------------------------------------------------------- */
+
+/* Small devices (tablets, 768px and up) @screen-sm-min */
+@media (min-width: 768px) {
+	
+}
+
+/* Medium devices (desktops, 992px and up) @screen-md-min */
+@media (min-width: 992px) {
+    .main-row {
+        display: flex;
+    }
+    .score-board {
+        width: calc(100% - 30px);
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
 }

@@ -24,7 +24,8 @@
 		</div> <!-- /jumbotron -->
 
 		<div class="container">
-			<div class="row text-center">
+
+			<div class="row text-center main-row">
 
 				<div class="col-md-6">
 
@@ -70,46 +71,71 @@
 					
 				</div> <!-- /row -->
 
-				<div class="col-md-6">
+				<div class="col-md-6 flexing">
 
 					<div class="message">
-						<h2>Guess the Pixar Character</h2>
+						<h2 class="new-game">Guess the Pixar Character</h2>
 						<h3 class="get-started pulse">Press any key to get started!</h3>
 					</div> <!-- /message -->
 
 					<div class="user-interface">
+							
+						<div class="current-word-wrapper">
+							
+							<h3>Current Word</h3>
 
-						<div class="row">
+							<p class="current-word focus">&nbsp;</p>
 
-							<div class="col-sm-3 col-sm-offset-3">
-									
-								<h3>Wins</h3>
+						</div> <!-- /current-word -->
 
-								<p class="wins focus">0</p>
+						<div class="score-board">
+								
+							<div class="guesses-wrapper">
+	
+								<div class="row">
+	
+									<div class="col-sm-6">
+											
+										<h4>Guesses Remaining</h4>
+										<p class="guesses-remaining">10</p>
+	
+									</div>
+	
+									<div class="col-sm-6">
+	
+										<h4>Letters Already Guessed</h4>
+	
+										<p class="user-guesses"></p>
+	
+									</div>
+	
+								</div> <!-- /row -->
+	
+							</div> <!-- /guess-wrapper -->
 
-							</div>
+							<div class="score">
 
-							<div class="col-sm-3">
-									
-								<h3>Losses</h3>
+								<div class="row">
 
-								<p class="losses focus">0</p>
+									<div class="col-sm-6">
+											
+										<h4>Wins</h4>
+										<p class="wins score-number">0</p>
 
-							</div>
+									</div>
 
-						</div>
+									<div class="col-sm-6">
+											
+										<h4>Losses</h4>
+										<p class="losses score-number">0</p>
 
-						<h3>Current Word</h3>
+									</div>
 
-						<p class="current-word focus">&nbsp;</p>
+								</div> <!-- /row -->
 
-						<h3>Number of Guesses Remaining</h3>
+							</div> <!-- /score -->
 
-						<p class="guesses-remaining focus">10</p>
-
-						<h3>Letters Already Guessed</h3>
-
-						<p class="user-guesses focus"></p>
+						</div> <!-- /score-area -->
 
 					</div> <!-- /user-interface -->
 
