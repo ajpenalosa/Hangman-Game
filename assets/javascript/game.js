@@ -85,7 +85,7 @@ for (var i = 65; i <= 90; i++) {
     alphabet[alphabet.length] = String.fromCharCode(i);
 };
 
-// Function to stop all sounds
+// Function to stop all theme songs
 function stopAllThemeSongs() {
     var allThemeSongs = document.getElementsByClassName("theme-song");
     for(var i = 0; i < allThemeSongs.length; i++) {
@@ -97,7 +97,7 @@ function stopAllThemeSongs() {
 // Function to start a new game
 function newGame() {
 
-    // Stops all sounds
+    // Stops all theme songs
     stopAllThemeSongs();
 
     // Plays new game sound
@@ -282,9 +282,12 @@ document.onkeyup = function(event) {
             " is from " + movie + "</span></h2>" +
             "<h3 class='get-started pulse'>Press space to play again!</h3>";
 
-            // Stops all sounds
+            // Stops all theme songs
             stopAllThemeSongs();
-
+            
+            // Resets the win sound before playing
+            winSound.pause();
+            winSound.currentTime = 0;
             winSound.play();
 
             wins++;
@@ -308,7 +311,7 @@ document.onkeyup = function(event) {
             " was the correct character.</span></h2>" +
             "<h3 class='get-started pulse'>Press space to play again!</h3>";
 
-            // Stops all sounds
+            // Stops all theme songs
             stopAllThemeSongs();
 
             loseSound.play();
