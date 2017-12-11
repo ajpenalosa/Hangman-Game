@@ -112,6 +112,7 @@ function newGame() {
 
     userGuessesDiv.innerHTML = "";
     currentWordP.innerHTML = "";
+    guessesRemainingDiv.innerHTML = guessesRemaining;
 
     // Sets which game elements display
     characterImage.style.display = "none";
