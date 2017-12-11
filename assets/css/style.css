@@ -45,14 +45,6 @@ body {
     font-family: "Lato", Arial, Helvetica, sans-serif;
 }
 
-html { 
-    background: url(../images/game-background.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
 .wrapper {
     min-height: 100%;
     height: auto;
@@ -60,10 +52,6 @@ html {
     margin: 0 auto -160px;
     /* Pad bottom by footer height (or more) */
     padding: 0 0 220px;
-}
-
-body {
-    background-color: transparent;
 }
 
 .footer {
@@ -81,15 +69,48 @@ body {
 }
 
 /*----------
+BACKGROUNDS
+----------------------------------------*/
+
+@keyframes clouds {
+    from {
+        background-position: 0 -84px;
+    }
+    to {
+        background-position: 2000px -84px;
+    }
+}
+
+@keyframes backgroundAnimation {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 2000px 0;
+    }
+}
+
+.clouds {
+    background-image: url(../images/clouds.png);
+    background-repeat: repeat-x;
+    background-position: 0 -84px;
+    animation: clouds 100s linear infinite;
+}
+
+body {
+    background-image: url(../images/game-background.jpg);
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    animation: backgroundAnimation 200s linear infinite;
+}
+
+/*----------
 JUMBOTRON
 ----------------------------------------*/
 
 .jumbotron {
-    background-image: url(../images/clouds.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: transparent;
     padding-bottom: 0;
+    background-color: transparent;
 }
 
 .jumbotron h1 {
