@@ -86,11 +86,11 @@ for (var i = 65; i <= 90; i++) {
 };
 
 // Function to stop all sounds
-function stopAllSounds() {
-    var allSounds = document.getElementsByTagName("audio");
-    for(var i = 0; i < allSounds.length; i++) {
-        allSounds[i].pause();
-        allSounds[i].currentTime = 0;
+function stopAllThemeSongs() {
+    var allThemeSongs = document.getElementsByClassName("theme-song");
+    for(var i = 0; i < allThemeSongs.length; i++) {
+        allThemeSongs[i].pause();
+        allThemeSongs[i].currentTime = 0;
     }
 };
 
@@ -98,7 +98,7 @@ function stopAllSounds() {
 function newGame() {
 
     // Stops all sounds
-    stopAllSounds();
+    stopAllThemeSongs();
 
     // Plays new game sound
     newGameSound.play();
@@ -282,9 +282,9 @@ document.onkeyup = function(event) {
             " is from " + movie + "</span></h2>" +
             "<h3 class='get-started pulse'>Press space to play again!</h3>";
 
-            // Resets the win sound before playing
-            winSound.pause();
-            winSound.currentTime = 0;
+            // Stops all sounds
+            stopAllThemeSongs();
+
             winSound.play();
 
             wins++;
@@ -308,8 +308,11 @@ document.onkeyup = function(event) {
             " was the correct character.</span></h2>" +
             "<h3 class='get-started pulse'>Press space to play again!</h3>";
 
-            // Resets lose sound before playing
+            // Stops all sounds
+            stopAllThemeSongs();
+
             loseSound.play();
+
             losses++;
 
             gameStarted = false;
