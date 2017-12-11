@@ -38,7 +38,19 @@ var drawRightArm = document.getElementsByClassName("person-right-arm")[0];
 var drawLeftLeg = document.getElementsByClassName("person-left-leg")[0];
 var drawRightLeg = document.getElementsByClassName("person-right-leg")[0];
 
-// Sounds
+// Theme Songs
+
+var songABugsLife = document.getElementsByClassName("a-bugs-life")[0];
+var songBrave = document.getElementsByClassName("brave")[0];
+var songCars = document.getElementsByClassName("cars")[0];
+var songFindingNemo = document.getElementsByClassName("finding-nemo")[0];
+var songInsideOut = document.getElementsByClassName("inside-out")[0];
+var songMonstersInc = document.getElementsByClassName("monsters-inc")[0];
+var songTheIncredibles = document.getElementsByClassName("the-incredibles")[0];
+var songToyStory = document.getElementsByClassName("toy-story")[0];
+var songUp = document.getElementsByClassName("up")[0];
+
+// Sounds Effects
 
 var newGameSound = document.getElementsByClassName("new-game-sound")[0];
 var winSound = document.getElementsByClassName("win-sound")[0];
@@ -73,14 +85,20 @@ for (var i = 65; i <= 90; i++) {
     alphabet[alphabet.length] = String.fromCharCode(i);
 };
 
+// Function to stop all sounds
+function stopAllSounds() {
+    var allSounds = document.getElementsByTagName("audio");
+    for(var i = 0; i < allSounds.length; i++) {
+        allSounds[i].pause();
+        allSounds[i].currentTime = 0;
+    }
+};
+
 // Function to start a new game
 function newGame() {
 
-    // Stops win and lose sounds
-    winSound.pause();
-    winSound.currentTime = 0;
-    loseSound.pause();
-    loseSound.currentTime = 0;
+    // Stops all sounds
+    stopAllSounds();
 
     // Plays new game sound
     newGameSound.play();
@@ -124,22 +142,31 @@ function newGame() {
     // Defines which movies each character is from
     if (randomCharacter === "Flik" || randomCharacter === "Princess Atta" || randomCharacter === "Hopper") {
         movie = "A Bug's Life";
+        songABugsLife.play();
     } else if (randomCharacter === "Merida" || randomCharacter === "King Fergus" || randomCharacter === "Queen Elinor") {
         movie = "Brave";
+        songBrave.play();
     } else if (randomCharacter === "Lightning McQueen" || randomCharacter === "Doc Hudson" || randomCharacter === "Sally Carrera") {
         movie = "Cars";
+        songCars.play();
     } else if (randomCharacter === "Nemo" || randomCharacter === "Dory" || randomCharacter === "Marlin") {
         movie = "Finding Nemo";
+        songFindingNemo.play();
     } else if (randomCharacter === "Joy" || randomCharacter === "Sadness" || randomCharacter === "Anger") {
         movie = "Inside Out";
+        songInsideOut.play();
     } else if (randomCharacter === "James P Sullivan" || randomCharacter === "Mike Wazowski" || randomCharacter === "Boo") {
         movie = "Monsters, Inc.";
+        songMonstersInc.play();
     } else if (randomCharacter === "Mr Incredible" || randomCharacter === "Elastigirl" || randomCharacter === "Edna Mode") {
         movie = "The Incredibles";
+        songTheIncredibles.play();
     } else if (randomCharacter === "Buzz Lightyear" || randomCharacter === "Sheriff Woody" || randomCharacter === "Bo Peep") {
         movie = "Toy Story";
+        songToyStory.play();
     } else if (randomCharacter === "Carl Fredricksen" || randomCharacter === "Ellie Fredricksen" || randomCharacter === "Russell") {
         movie = "Up";
+        songUp.play();
     };
     
     // Looping through the chosen character name
