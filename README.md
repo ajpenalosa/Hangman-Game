@@ -5,7 +5,7 @@ Game Functionality
 
 When the page loads, an embedded YouTube video of the Pixar logo autoplays. The message to the right of the video pulses to grab the player’s attention: "Press any key to get started!" Once any key is pressed, the game begins.
 
-The video disappears, creating a blank canvas on the left side of the browser. A random character name is chosen by the computer and a placeholder with underscores displays on the right side. A scoreboard on the bottom displays Guesses Remaining, Letters Already Guessed, Wins, and Losses.
+The video disappears, creating a blank canvas on the left side of the browser. A random character name is chosen by the computer and a placeholder with underscores displays on the right side. A scoreboard on the bottom displays Guesses Remaining, Letters Already Guessed, Wins, and Losses. The theme song from the movie of the character plays to give a hint to the player.
 
 The user can begin pressing keys to guess what character has been chosen. A correctly chosen letter will reveal that letter in the Current Word section. An incorrect guess displays the letter under Letters Already Guessed, 1 is subtracted from Guesses Remaining, and a piece of the hangman drawing is revealed.
 
