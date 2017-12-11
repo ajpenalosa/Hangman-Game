@@ -454,10 +454,14 @@ h2.game-end span {
     animation-duration: 1s;
 }
 
+.space {
+    margin: 0 10px;
+}
+
 .current-word {
     font-size: 2.857em;
     font-weight: bold;
-    letter-spacing: 10px;
+    letter-spacing: 14px;
 }
 
 .current-word-wrapper {

@@ -168,7 +168,7 @@ function newGame() {
         songUp.play();
     };
     
-    // Looping through the chosen character name
+    // Creating placeholder with underscores for current word
     for (var i = 0; i < upperCaseWord.length; i++) {
 
         // Creates a span with class of letter
@@ -178,6 +178,7 @@ function newGame() {
         // If the letter is a space
         if (upperCaseWord[i] === " ") {
             span.textContent = " "; // Puts a space in the span
+            span.setAttribute("class","letter space"); // Adds class of space to span
             currentWord[i] = " "; // Puts a space when there is a space in the current word
             characterImageLetters[i] = "-"; // Adds a dash for the image source
         } else {
