@@ -85,6 +85,8 @@ for (var i = 65; i <= 90; i++) {
     alphabet[alphabet.length] = String.fromCharCode(i);
 };
 
+setTimeout(function(){youtubeVideo.style.opacity ="0";}, 16000);
+
 // Function to stop all theme songs
 function stopAllThemeSongs() {
     var allThemeSongs = document.getElementsByClassName("theme-song");
