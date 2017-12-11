@@ -97,9 +97,6 @@ function stopAllThemeSongs() {
 // Function to start a new game
 function newGame() {
 
-    // Stops all theme songs
-    stopAllThemeSongs();
-
     // Plays new game sound
     newGameSound.play();
 
@@ -222,11 +219,9 @@ document.onkeyup = function(event) {
                 }
             }
             if (isGuessCorrect) { // Plays correct guess sound
-                correctPress.pause();
                 correctPress.currentTime = 0;
                 correctPress.play();
             } else { // Plays wrong guess sound
-                wrongPress.pause();
                 wrongPress.currentTime = 0;
                 wrongPress.play();
             }
@@ -286,7 +281,6 @@ document.onkeyup = function(event) {
             stopAllThemeSongs();
             
             // Resets the win sound before playing
-            winSound.pause();
             winSound.currentTime = 0;
             winSound.play();
 
