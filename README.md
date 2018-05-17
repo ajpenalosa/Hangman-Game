@@ -1,6 +1,8 @@
 # Hangman-Game
 Homework 3 - JavaScript
 
+This is the original version of this game from the 2017 November - May cohort.
+
 Game Functionality
 
 When the page loads, an embedded YouTube video of the Pixar logo autoplays. The message to the right of the video pulses to grab the player’s attention: "Press any key to get started!" Once any key is pressed, the game begins.
