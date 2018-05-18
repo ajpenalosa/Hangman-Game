@@ -1,4 +1,4 @@
-# Hangman-Game
+# Word-Guess-Game
 Homework 3 - JavaScript
 
 Game Functionality

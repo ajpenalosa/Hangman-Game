@@ -142,16 +142,6 @@ IMAGE AREA
     position: relative;
 }
 
-.video-pixar-logo {
-    position: absolute;
-    width: 100%;
-    opacity: 1;
-    -webkit-transition: opacity 3000ms linear;
-    transition: opacity 3000ms linear;
-    background-size: 100%;
-    z-index: 20;
-}
-
 .character-image {
     position: relative;
     width: 100%;
