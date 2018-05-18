@@ -19,7 +19,6 @@ var guessesRemainingDiv = document.getElementsByClassName("guesses-remaining")[0
 var currentWordP = document.getElementsByClassName("current-word")[0];
 var messageDiv = document.getElementsByClassName("message")[0];
 var userGuessesDiv = document.getElementsByClassName("user-guesses")[0];
-var youtubeVideo = document.getElementsByClassName("video-pixar-logo")[0];
 var userInterface = document.getElementsByClassName("user-interface")[0];
 var gameImageWrapper = document.getElementsByClassName("game-image-wrapper")[0];
 
@@ -84,8 +83,6 @@ var characterImageLetters = [];
 for (var i = 65; i <= 90; i++) {
     alphabet[alphabet.length] = String.fromCharCode(i);
 };
-
-setTimeout(function(){youtubeVideo.style.opacity ="0";}, 16000);
 
 // Function to stop all theme songs
 function stopAllThemeSongs() {
@@ -337,10 +334,6 @@ document.onkeyup = function(event) {
 
         // Game starts with any key if first game, but next games only start with space bar
         if (keyPress === " " || isFirstGame) {
-            if(isFirstGame) {
-                // Removes YouTube Video
-                youtubeVideo.parentNode.removeChild(youtubeVideo);
-            }
             newGame();
         }
     }
