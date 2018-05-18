@@ -1,7 +1,5 @@
-# Hangman-Game
+# Word-Guess-Game
 Homework 3 - JavaScript
-
-This is the original version of this game from the 2017 November - May cohort.
 
 Game Functionality
 
